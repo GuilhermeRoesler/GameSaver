@@ -1,0 +1,432 @@
+[
+    {
+        "game": "Era do Gelo",
+        "path": "\\AppData\\Roaming\\Activision\\IceAge3",
+        "last_save": ""
+    },
+    {
+        "game": "Blur",
+        "path": "\\AppData\\Roaming\\bizarre creations\\blur",
+        "last_save": ""
+    },
+    {
+        "game": "Assassin's Creed",
+        "path": "\\AppData\\Roaming\\Ubisoft\\Assassin's Creed",
+        "last_save": ""
+    },
+    {
+        "game": "Assassin's Creed 2",
+        "path": "\\AppData\\Roaming\\Ubisoft\\Assassin's Creed 2",
+        "last_save": ""
+    },
+    {
+        "game": "Summertime Saga",
+        "path": "\\AppData\\Roaming\\RenPy\\SummertimeSaga",
+        "last_save": ""
+    },
+    {
+        "game": "Disney Universe",
+        "path": "\\Documents\\My Games\\Disney Interactive Studios\\Disney Universe",
+        "last_save": ""
+    },
+    {
+        "game": "Stranded Deep",
+        "path": "\\AppData\\LocalLow\\Beam Team Games\\Stranded Deep\\Data",
+        "last_save": ""
+    },
+    {
+        "game": "The Witcher 3: Wild Hunt",
+        "path": "\\Documents\\The Witcher 3\\gamesaves",
+        "last_save": ""
+    },
+    {
+        "game": "Grand Theft Auto V",
+        "path": "\\Documents\\Rockstar Games\\GTA V\\Profiles",
+        "last_save": ""
+    },
+    {
+        "game": "Red Dead Redemption 2",
+        "path": "\\Documents\\Rockstar Games\\Red Dead Redemption 2\\Profiles",
+        "last_save": ""
+    },
+    {
+        "game": "Cyberpunk 2077",
+        "path": "\\Saved Games\\CD Projekt Red\\Cyberpunk 2077",
+        "last_save": ""
+    },
+    {
+        "game": "Dark Souls III",
+        "path": "\\AppData\\Roaming\\DarkSoulsIII",
+        "last_save": ""
+    },
+    {
+        "game": "Sekiro: Shadows Die Twice",
+        "path": "\\AppData\\Roaming\\Sekiro",
+        "last_save": ""
+    },
+    {
+        "game": "Minecraft",
+        "path": "\\AppData\\Roaming\\.minecraft\\saves",
+        "last_save": ""
+    },
+    {
+        "game": "Fortnite",
+        "path": "\\AppData\\Local\\FortniteGame\\Saved\\SaveGames",
+        "last_save": ""
+    },
+    {
+        "game": "League of Legends",
+        "path": "\\Riot Games\\League of Legends\\Config",
+        "last_save": ""
+    },
+    {
+        "game": "Valorant",
+        "path": "\\AppData\\Local\\VALORANT\\Saved",
+        "last_save": ""
+    },
+    {
+        "game": "Overwatch",
+        "path": "\\Documents\\Overwatch\\Settings",
+        "last_save": ""
+    },
+    {
+        "game": "Apex Legends",
+        "path": "\\Saved Games\\Respawn\\Apex",
+        "last_save": ""
+    },
+    {
+        "game": "Call of Duty: Modern Warfare",
+        "path": "\\Documents\\Call of Duty Modern Warfare\\players",
+        "last_save": ""
+    },
+    {
+        "game": "Call of Duty: Warzone",
+        "path": "\\Documents\\Call of Duty Modern Warfare\\players",
+        "last_save": ""
+    },
+    {
+        "game": "Battlefield V",
+        "path": "\\Documents\\Battlefield V\\settings",
+        "last_save": ""
+    },
+    {
+        "game": "FIFA 21",
+        "path": "\\Documents\\FIFA 21\\settings",
+        "last_save": ""
+    },
+    {
+        "game": "The Sims 4",
+        "path": "\\Documents\\Electronic Arts\\The Sims 4\\saves",
+        "last_save": ""
+    },
+    {
+        "game": "Fallout 4",
+        "path": "\\Documents\\My Games\\Fallout4\\Saves",
+        "last_save": ""
+    },
+    {
+        "game": "Skyrim",
+        "path": "\\Documents\\My Games\\Skyrim\\Saves",
+        "last_save": ""
+    },
+    {
+        "game": "DOOM Eternal",
+        "path": "\\Saved Games\\id Software\\DOOMEternal",
+        "last_save": ""
+    },
+    {
+        "game": "Resident Evil 2",
+        "path": "\\Steam\\userdata\\[User ID]\\883710\\remote",
+        "last_save": ""
+    },
+    {
+        "game": "Resident Evil 3",
+        "path": "\\Steam\\userdata\\[User ID]\\952060\\remote",
+        "last_save": ""
+    },
+    {
+        "game": "Resident Evil Village",
+        "path": "\\Steam\\userdata\\[User ID]\\1196590\\remote",
+        "last_save": ""
+    },
+    {
+        "game": "Monster Hunter: World",
+        "path": "\\Steam\\userdata\\[User ID]\\582010\\remote",
+        "last_save": ""
+    },
+    {
+        "game": "Hades",
+        "path": "\\Documents\\Saved Games\\Hades",
+        "last_save": ""
+    },
+    {
+        "game": "Among Us",
+        "path": "\\AppData\\LocalLow\\Innersloth\\Among Us",
+        "last_save": ""
+    },
+    {
+        "game": "Stardew Valley",
+        "path": "\\AppData\\Roaming\\StardewValley\\Saves",
+        "last_save": ""
+    },
+    {
+        "game": "Terraria",
+        "path": "\\Documents\\My Games\\Terraria\\Players",
+        "last_save": ""
+    },
+    {
+        "game": "Hollow Knight",
+        "path": "\\AppData\\LocalLow\\Team Cherry\\Hollow Knight",
+        "last_save": ""
+    },
+    {
+        "game": "Celeste",
+        "path": "\\AppData\\Roaming\\Celeste",
+        "last_save": ""
+    },
+    {
+        "game": "Dead Cells",
+        "path": "\\AppData\\Local\\DeadCells",
+        "last_save": ""
+    },
+    {
+        "game": "Subnautica",
+        "path": "\\Subnautica\\SavedGames",
+        "last_save": ""
+    },
+    {
+        "game": "No Man's Sky",
+        "path": "\\AppData\\Roaming\\HelloGames\\NMS",
+        "last_save": ""
+    },
+    {
+        "game": "Control",
+        "path": "\\Documents\\My Games\\Control\\Saves",
+        "last_save": ""
+    },
+    {
+        "game": "Metro Exodus",
+        "path": "\\Saved Games\\metro exodus",
+        "last_save": ""
+    },
+    {
+        "game": "Shadow of the Tomb Raider",
+        "path": "\\Documents\\Shadow of the Tomb Raider\\Saves",
+        "last_save": ""
+    },
+    {
+        "game": "Assassin's Creed Odyssey",
+        "path": "\\Documents\\Assassin's Creed Odyssey\\Saves",
+        "last_save": ""
+    },
+    {
+        "game": "Assassin's Creed Valhalla",
+        "path": "\\Documents\\Assassin's Creed Valhalla\\Saves",
+        "last_save": ""
+    },
+    {
+        "game": "Far Cry 5",
+        "path": "\\Documents\\My Games\\Far Cry 5\\Saved Games",
+        "last_save": ""
+    },
+    {
+        "game": "Half-Life 2",
+        "path": "\\Steam\\steamapps\\common\\Half-Life 2\\hl2\\SAVE",
+        "last_save": ""
+    },
+    {
+        "game": "Portal 2",
+        "path": "\\Steam\\userdata\\[User ID]\\620\\remote",
+        "last_save": ""
+    },
+    {
+        "game": "Left 4 Dead 2",
+        "path": "\\Steam\\userdata\\[User ID]\\550\\remote",
+        "last_save": ""
+    },
+    {
+        "game": "Team Fortress 2",
+        "path": "\\Steam\\userdata\\[User ID]\\440\\remote",
+        "last_save": ""
+    },
+    {
+        "game": "Counter-Strike: Global Offensive",
+        "path": "\\Steam\\userdata\\[User ID]\\730\\remote",
+        "last_save": ""
+    },
+    {
+        "game": "Dota 2",
+        "path": "\\Steam\\userdata\\[User ID]\\570\\remote",
+        "last_save": ""
+    },
+    {
+        "game": "PUBG: Battlegrounds",
+        "path": "\\Steam\\userdata\\[User ID]\\578080\\remote",
+        "last_save": ""
+    },
+    {
+        "game": "Rocket League",
+        "path": "\\Documents\\My Games\\Rocket League\\TAGame\\SaveData",
+        "last_save": ""
+    },
+    {
+        "game": "Destiny 2",
+        "path": "\\AppData\\Roaming\\Bungie\\DestinyPC\\prefs",
+        "last_save": ""
+    },
+    {
+        "game": "Genshin Impact",
+        "path": "\\Program Files\\Genshin Impact\\Genshin Impact Game\\save",
+        "last_save": ""
+    },
+    {
+        "game": "World of Warcraft",
+        "path": "\\Program Files (x86)\\World of Warcraft\\_retail_\\WTF",
+        "last_save": ""
+    },
+    {
+        "game": "Diablo III",
+        "path": "\\Documents\\Diablo III",
+        "last_save": ""
+    },
+    {
+        "game": "StarCraft II",
+        "path": "\\Documents\\StarCraft II\\Accounts",
+        "last_save": ""
+    },
+    {
+        "game": "Hearthstone",
+        "path": "\\AppData\\Local\\Blizzard\\Hearthstone",
+        "last_save": ""
+    },
+    {
+        "game": "Heroes of the Storm",
+        "path": "\\Documents\\Heroes of the Storm\\Accounts",
+        "last_save": ""
+    },
+    {
+        "game": "Overcooked! 2",
+        "path": "\\AppData\\Roaming\\Overcooked2",
+        "last_save": ""
+    },
+    {
+        "game": "Cuphead",
+        "path": "\\AppData\\Roaming\\Cuphead",
+        "last_save": ""
+    },
+    {
+        "game": "Hollow Knight",
+        "path": "\\AppData\\LocalLow\\Team Cherry\\Hollow Knight",
+        "last_save": ""
+    },
+    {
+        "game": "Ori and the Blind Forest",
+        "path": "\\Users\\[Username]\\AppData\\Local\\Ori and the Blind Forest DE",
+        "last_save": ""
+    },
+    {
+        "game": "Ori and the Will of the Wisps",
+        "path": "\\Users\\[Username]\\AppData\\Local\\Ori and the Will of the Wisps",
+        "last_save": ""
+    },
+    {
+        "game": "Celeste",
+        "path": "\\AppData\\Roaming\\Celeste",
+        "last_save": ""
+    },
+    {
+        "game": "Dead Cells",
+        "path": "\\AppData\\Local\\DeadCells",
+        "last_save": ""
+    },
+    {
+        "game": "Subnautica",
+        "path": "\\Subnautica\\SavedGames",
+        "last_save": ""
+    },
+    {
+        "game": "No Man's Sky",
+        "path": "\\AppData\\Roaming\\HelloGames\\NMS",
+        "last_save": ""
+    },
+    {
+        "game": "Control",
+        "path": "\\Documents\\My Games\\Control\\Saves",
+        "last_save": ""
+    },
+    {
+        "game": "Metro Exodus",
+        "path": "\\Saved Games\\metro exodus",
+        "last_save": ""
+    },
+    {
+        "game": "Shadow of the Tomb Raider",
+        "path": "\\Documents\\Shadow of the Tomb Raider\\Saves",
+        "last_save": ""
+    },
+    {
+        "game": "Assassin's Creed Odyssey",
+        "path": "\\Documents\\Assassin's Creed Odyssey\\Saves",
+        "last_save": ""
+    },
+    {
+        "game": "Assassin's Creed Valhalla",
+        "path": "\\Documents\\Assassin's Creed Valhalla\\Saves",
+        "last_save": ""
+    },
+    {
+        "game": "Far Cry 5",
+        "path": "\\Documents\\My Games\\Far Cry 5\\Saved Games",
+        "last_save": ""
+    },
+    {
+        "game": "Far Cry New Dawn",
+        "path": "\\Documents\\My Games\\Far Cry New Dawn\\Saved Games",
+        "last_save": ""
+    },
+    {
+        "game": "Far Cry 6",
+        "path": "\\Documents\\My Games\\Far Cry 6\\Saved Games",
+        "last_save": ""
+    },
+    {
+        "game": "Watch Dogs 2",
+        "path": "\\Documents\\My Games\\Watch_Dogs 2\\Saves",
+        "last_save": ""
+    },
+    {
+        "game": "Watch Dogs: Legion",
+        "path": "\\Documents\\My Games\\Watch Dogs Legion\\Saves",
+        "last_save": ""
+    },
+    {
+        "game": "Rainbow Six Siege",
+        "path": "\\Documents\\My Games\\Rainbow Six - Siege\\[User ID]\\Saves",
+        "last_save": ""
+    },
+    {
+        "game": "For Honor",
+        "path": "\\Documents\\My Games\\For Honor\\[User ID]\\Saves",
+        "last_save": ""
+    },
+    {
+        "game": "Ghost Recon Wildlands",
+        "path": "\\Documents\\My Games\\Ghost Recon Wildlands\\Saves",
+        "last_save": ""
+    },
+    {
+        "game": "Ghost Recon Breakpoint",
+        "path": "\\Documents\\My Games\\Ghost Recon Breakpoint\\Saves",
+        "last_save": ""
+    },
+    {
+        "game": "The Division",
+        "path": "\\Documents\\My Games\\Tom Clancy's The Division\\Saves",
+        "last_save": ""
+    },
+    {
+        "game": "The Division 2",
+        "path": "\\Documents\\My Games\\Tom Clancy's The Division 2\\Saves",
+        "last_save": ""
+    }
+]

@@ -1,0 +1,13 @@
+[
+    {
+        "game": "Game Name",
+        "path": "\\AppData\\Roaming\\YourGame",
+        "last_save": ""
+    },
+    {
+        "game": "Game Name 2",
+        "path": "\\Documents\\My Games\\YourGame",
+        "last_save": "",
+        "important!": "These are two examples, delete 'important!' line after this. Always use double backslash! Leave last_save empty! Separate games by a comma (,) between braces({})! The directory is given after User folder (C:\\Users\\youruser)!"
+    }
+]
