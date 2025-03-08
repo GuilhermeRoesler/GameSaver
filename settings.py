@@ -52,6 +52,7 @@ class Settings:
                 print(f'{setting.upper()} path does not exist. Please, verify if that\'s right')
                 setattr(self, setting, input(f'{setting.upper()}: '))
     
+    # Ask for user if default is good
     def print(self) -> None:
         self.user_location = input(f"User location (default is '{self.user_location}'): ").strip() or self.user_location
         self.destination_location = input(f"Destination location (default is '{self.destination_location}'): ").strip() or self.destination_location
