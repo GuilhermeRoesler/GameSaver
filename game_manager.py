@@ -54,8 +54,5 @@ class GameManager:
         return os.path.join(self.destination_location, 'SAVES', game_folder)
     
     def confirm_save_operation(self) -> bool:
-        if input('Do you want to proceed? (y/n): ') == 'y' or '':
-            return True
-        else:
-            print('Closing operation. See you soon, folks!')
-            return False
+        response = input('Do you want to proceed? (y/n): ').lower().strip()
+        return response in ['y', 'yes', '']

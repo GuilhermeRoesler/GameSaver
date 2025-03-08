@@ -16,7 +16,7 @@ def run() -> None:
     game_manager = GameManager(settings.user_location, settings.destination_location)
     
     settings.print()
-    if settings.mode == 'collect' or '':
+    if settings.mode in ['collect', '']:
         game_manager.collect()
     elif settings.mode == 'spread':
         game_manager.spread()
