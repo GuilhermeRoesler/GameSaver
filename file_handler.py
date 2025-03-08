@@ -19,12 +19,12 @@ def ensure_directory_exists(path: str) -> None:
     if not os.path.exists(path):
         os.makedirs(path)
 
-def create_default_files(self) -> None:
-    """Create default configuration files if they don't exist"""
-    create_games_file()
-    create_settings_file()
+def create_default_files() -> None:
+    # Create default configuration files if they don't exist
+    _create_games_file()
+    _create_settings_file()
 
-def create_games_file(self) -> None:
+def _create_games_file() -> None:
     if os.path.exists(GAMES_PATH):
         print("games.json file loaded!")
         return
@@ -32,7 +32,7 @@ def create_games_file(self) -> None:
     print("games.json file not found. Creating a default...")
     save_json(GAMES_PATH, DEFAULT_GAMES)
 
-def create_settings_file(self) -> None:
+def _create_settings_file() -> None:
     if os.path.exists(SETTINGS_PATH):
         print("settings.json file loaded!")
         return
