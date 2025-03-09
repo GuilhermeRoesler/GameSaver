@@ -1,18 +1,18 @@
-# 🎮 SaveSync - Gerencie seus Saves de Jogos com Facilidade
+# 🎮 GameSaver - Gerencie seus Saves de Jogos com Facilidade
 
 ## 📌 Sobre o Projeto
-O **SaveSync** é uma ferramenta poderosa para gerenciar os saves de todos os jogos encontrados no computador do usuário. Ele permite:
+O **GameSaver** é uma ferramenta poderosa para gerenciar os saves de todos os jogos encontrados no computador do usuário. Ele permite:
 ✅ **Backup automático** dos saves de todos os jogos detectados.
 ✅ **Restauração rápida** para evitar perdas de progresso.
 ✅ **Sincronização** de uma pasta de saves personalizada com os respectivos jogos.
 ✅ **Suporte a múltiplos jogos**, garantindo compatibilidade com diversas plataformas.
 
 ## 🚀 Como Funciona?
-O SaveSync escaneia o computador em busca de saves de jogos e os armazena de maneira organizada. Ele também pode distribuir saves previamente armazenados para os respectivos diretórios dos jogos, garantindo que o usuário tenha sempre seu progresso salvo e disponível.
+O GameSaver escaneia o computador em busca de saves de jogos e os armazena de maneira organizada. Ele também pode distribuir saves previamente armazenados para os respectivos diretórios dos jogos, garantindo que o usuário tenha sempre seu progresso salvo e disponível.
 
 ## 🛠️ Tecnologias Utilizadas
-- **Python 3.x**
-- **Bibliotecas:** `os`, `shutil`, `json`, `tkinter` (para interface gráfica, se aplicável)
+- **Python 3.13.2**
+- **Bibliotecas:** `os`, `sys`, `shutil`, `json`, `tkinter` (para interface gráfica, se aplicável)
 
 ## 📥 Instalação
 1. **Clone este repositório:**
