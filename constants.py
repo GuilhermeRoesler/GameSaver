@@ -1,5 +1,6 @@
 import os
 import sys
+from utils import colored
 
 # Paths
 BASE_DIR = os.path.dirname(sys.executable) if getattr(sys, 'frozen', False) else os.path.dirname(os.path.abspath(__file__))
@@ -44,8 +45,7 @@ DEFAULT_GAMES = [
     }
 ]
 
-# Messages
-START_TEXT = '''
+START_TEXT = colored('cyan', '''
 ╔════════════════ GAME SAVER ════════════════╗
 ║                                            ║
 ║  Welcome to Game Saver!                    ║
@@ -60,10 +60,15 @@ START_TEXT = '''
 ║  3. Enjoy and have fun!                    ║
 ║                                            ║
 ╚════════════════════════════════════════════╝
+''')
 
-! - If you have another user location (like another storage or something), you can configure it at settings.json.
-! - If you want to customize destination folder, same, settings.json.
-! - If your game does not appear at the found games list, add it at games.json.
-! - Open JSON files with notepad ;)
-'''
+FINAL_TEXT = colored('green', '''
+╔═════════════════════════════════════╗
+║  Operation completed successfully!  ║
+╚═════════════════════════════════════╝
+''')
 
+# ! - If you have another user location (like another storage or something), you can configure it at settings.json.
+# ! - If you want to customize destination folder, same, settings.json.
+# ! - If your game does not appear at the found games list, add it at games.json.
+# ! - Open JSON files with notepad ;)

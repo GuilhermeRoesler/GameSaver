@@ -2,6 +2,7 @@ import os
 from typing import List, Dict
 from file_handler import load_json, copy_game_save
 from constants import GAMES_PATH, DATABASE_PATH
+from utils import printc
 
 class GameManager:
     def __init__(self, user_location: str, destination_location: str):
@@ -14,8 +15,10 @@ class GameManager:
     
     # Collect game saves from user location
     def collect(self) -> None:
-        print('The following games were found:')
-        print(*(f'- {game['game']}' for game in self.installed_games), sep='\n')
+        printc('green', '\nFound Games:')
+        for game in self.installed_games:
+            printc('cyan', f'➜  {game["game"]}')
+        printc('yellow', f'\nTotal games found: {len(self.installed_games)}')
         
         if not self.confirm_save_operation():
             return
@@ -23,19 +26,19 @@ class GameManager:
         self.copy_games()
     
     def copy_games(self) -> None:
+        printc('green', '\nStarting backup process...\n')
         for game in self.installed_games:
-            print(f'- Copying {game['game']}...')
+            printc('cyan', f'Backing up {game["game"]}...')
             
             game_location = os.path.join(self.user_location, game['path'])
             game_destination = os.path.join(self.destination_location, 'SAVES', os.path.basename(game_location))
             
             if not game['path']:
-                print(f'Skipping {game['game']} because the path is empty.')
-                print('Please, fill up the path at games_database.json!')
+                printc('red', f'⚠ Skipping {game["game"]} - Missing path configuration')
                 continue
             
             copy_game_save(game_location, game_destination)
-            print(f'{os.path.basename(game_location)} folder copied to {game_destination}')
+            printc('green', f'✓ Successfully backed up {game["game"]}')
     
     def spread(self) -> None:
         # Spread saved games to user computer

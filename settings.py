@@ -1,6 +1,7 @@
-from constants import SETTINGS_PATH, USER_DEFAULT_PATH
-from file_handler import load_json, save_json
 import os
+from constants import SETTINGS_PATH, USER_DEFAULT_PATH
+from file_handler import load_json
+from utils import printc, colored_multi
 
 class Settings:
     def __init__(self):
@@ -54,10 +55,15 @@ class Settings:
     
     # Ask for user if default is good
     def print(self) -> None:
-        self.user_location = input(f"User location (default is '{self.user_location}'): ").strip() or self.user_location
-        self.destination_location = input(f"Destination location (default is '{self.destination_location}'): ").strip() or self.destination_location
-        self.mode = input(f"Mode (default is '{self.mode})': ").strip() or self.mode
-        print()
+        printc('cyan', '\nCurrent Settings:')
+        print(f'{"─" * 40}')
+        
+        colors = ['yellow', 'cyan']
+        self.user_location = input(colored_multi(colors, ['User location ', f'[{self.user_location}]: '])).strip() or self.user_location
+        self.destination_location = input(colored_multi(colors, ['Destination location ', f'[{self.destination_location}]: '])).strip() or self.destination_location
+        self.mode = input(colored_multi(colors, ['Mode ', f'[{self.mode}]: '])).strip() or self.mode
+        
+        print(f'{"─" * 40}')
         self.check()
 
 

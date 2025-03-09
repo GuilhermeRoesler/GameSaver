@@ -1,0 +1,17 @@
+[
+    {
+        "game": "Game Name",
+        "path": "\\AppData\\Roaming\\YourGame",
+        "last_save": ""
+    },
+    {
+        "game": "Game Name 2",
+        "path": "\\Documents\\My Games\\YourGame",
+        "last_save": ""
+    },
+    {
+        "game": "Minecraft",
+        "path": "\\AppData\\Roaming\\.minecraft\\versions",
+        "last_save": ""
+    }
+]

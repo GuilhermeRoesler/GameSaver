@@ -3,6 +3,7 @@ import shutil
 import json
 from typing import Dict, Any
 from constants import GAMES_PATH, SETTINGS_PATH, DEFAULT_SETTINGS, DEFAULT_GAMES
+from utils import printc
 
 def load_json(filepath: str) -> Dict:
     with open(filepath, 'r', encoding='utf-8') as file:
@@ -13,6 +14,7 @@ def save_json(filepath: str, data: Dict) -> None:
         json.dump(data, file, indent=4)
 
 def copy_game_save(source: str, destination: str) -> None:
+    printc('yellow', 'Copying files...')
     shutil.copytree(source, destination, dirs_exist_ok=True)
 
 def ensure_directory_exists(path: str) -> None:
