@@ -2,7 +2,7 @@ import os
 import shutil
 import json
 from typing import Dict, Any
-from constants import GAMES_PATH, SETTINGS_PATH, HOW_TO_RUN_PATH, DEFAULT_SETTINGS, DEFAULT_GAMES, DEFAULT_HOW_TO_RUN
+from constants import GAMES_PATH, SETTINGS_PATH, HOW_TO_RUN_PATH, DEFAULT_SETTINGS, DEFAULT_GAMES, DEFAULT_HOW_TO_RUN, SAVES_PATH, BACKUP_PATH
 from utils import printc
 
 def load_json(filepath: str) -> Dict:
@@ -30,6 +30,8 @@ def create_default_files() -> None:
     _create_games_file()
     _create_settings_file()
     _create_how_to_run_file()
+    _create_saves_folder()
+    _create_backup_folder()
 
 def _create_games_file() -> None:
     if os.path.exists(GAMES_PATH):
@@ -48,9 +50,21 @@ def _create_settings_file() -> None:
     save_json(SETTINGS_PATH, DEFAULT_SETTINGS)
 
 def _create_how_to_run_file():
-    if os.path.exists(''):
+    if os.path.exists(HOW_TO_RUN_PATH):
         print('how to run.txt file loaded!')
         return
     
     print('how to run.txt file not found. Creating a default...')
     save_txt(HOW_TO_RUN_PATH, DEFAULT_HOW_TO_RUN)
+
+def _create_saves_folder() -> None:
+    if not os.path.exists(SAVES_PATH):
+        os.mkdir(SAVES_PATH)
+        print('Saves folder created!')
+        return
+
+def _create_backup_folder() -> None:
+    if not os.path.exists(BACKUP_PATH):
+        os.mkdir(BACKUP_PATH)
+        print('Backup folder created!')
+        return

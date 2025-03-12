@@ -1,20 +1,22 @@
 import os
-from constants import SETTINGS_PATH, USER_DEFAULT_PATH
+from constants import SETTINGS_PATH, USER_DEFAULT_PATH, DESTINATION_DEFAULT_PATH
 from file_handler import load_json
 from utils import printc, colored_multi
 
 class Settings:
     def __init__(self):
         self.user_location = USER_DEFAULT_PATH
-        self.destination_location = USER_DEFAULT_PATH
+        self.destination_location = DESTINATION_DEFAULT_PATH
         self.mode = 'collect'
+        self.load()
     
     def load(self) -> None:
-        settings = load_json(SETTINGS_PATH)
-        self.user_location = settings['user_location']
-        self.destination_location = settings['destination_location']
-        self.mode = settings['mode']
-        self.check()
+        if os.path.exists(SETTINGS_PATH):
+            settings = load_json(SETTINGS_PATH)
+            self.user_location = settings['user_location']
+            self.destination_location = settings['destination_location']
+            self.mode = settings['mode']
+            self.check()
     
     def check(self) -> None:
         while True:

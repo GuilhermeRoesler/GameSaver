@@ -1,10 +1,26 @@
+import sys
+from PyQt6.QtWidgets import QApplication
+from PyQt6.QtGui import QIcon
+from gui.main_window import GameSaverWindow
 from settings import Settings
 from game_manager import GameManager
 from file_handler import create_default_files
-from constants import START_TEXT, FINAL_TEXT
-from utils import colored_multi
+from constants import START_TEXT, FINAL_TEXT, STYLES_PATH
+
+isGUI = True
 
 def run() -> None:
+    loadGUI() if isGUI else load()
+
+def loadGUI():
+    app = QApplication(sys.argv)
+    app.setWindowIcon(QIcon('imgs/icon.png'))
+    app.setStyleSheet(load_stylesheet('gui/styles.qss'))
+    window = GameSaverWindow()
+    window.show()
+    sys.exit(app.exec())
+
+def load():
     # Create games.json and settings.json for user interaction.
     create_default_files()
     
@@ -25,6 +41,10 @@ def run() -> None:
     # wait for user to read all terminal and finish it. Cancel automatic close
     print(FINAL_TEXT)
     input('Press Enter to exit...')
+
+def load_stylesheet(file_path):
+    with open(STYLES_PATH, 'r') as file:
+        return file.read()
 
 if __name__ == '__main__':
     run()

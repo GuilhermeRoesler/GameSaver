@@ -1,437 +1,524 @@
 [
     {
         "game": "Era do Gelo",
-        "path": "AppData\\Roaming\\Activision\\IceAge3",
+        "path": "AppData/Roaming/Activision/IceAge3",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Blur",
-        "path": "AppData\\Roaming\\bizarre creations\\blur",
+        "path": "AppData/Roaming/bizarre creations/blur",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Assassin's Creed",
-        "path": "AppData\\Roaming\\Ubisoft\\Assassin's Creed",
+        "path": "AppData/Roaming/Ubisoft/Assassin's Creed",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Assassin's Creed 2",
-        "path": "AppData\\Roaming\\Ubisoft\\Assassin's Creed 2",
+        "path": "AppData/Roaming/Ubisoft/Assassin's Creed 2",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Summertime Saga",
-        "path": "AppData\\Roaming\\RenPy\\SummertimeSaga",
+        "path": "AppData/Roaming/RenPy/SummertimeSaga",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Disney Universe",
-        "path": "Documents\\My Games\\Disney Interactive Studios\\Disney Universe",
+        "path": "Documents/My Games/Disney Interactive Studios/Disney Universe",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Stranded Deep",
-        "path": "AppData\\LocalLow\\Beam Team Games\\Stranded Deep\\Data",
+        "path": "AppData/LocalLow/Beam Team Games/Stranded Deep/Data",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "House Flipper",
-        "path": "\\AppData\\LocalLow\\Empyrean\\House Flipper Game\\Profiles",
+        "path": "AppData/LocalLow/Empyrean/House Flipper Game/Profiles",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "The Witcher 3: Wild Hunt",
-        "path": "Documents\\The Witcher 3\\gamesaves",
+        "path": "Documents/The Witcher 3/gamesaves",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Grand Theft Auto V",
-        "path": "Documents\\Rockstar Games\\GTA V\\Profiles",
+        "path": "Documents/Rockstar Games/GTA V/Profiles",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Red Dead Redemption 2",
-        "path": "Documents\\Rockstar Games\\Red Dead Redemption 2\\Profiles",
+        "path": "Documents/Rockstar Games/Red Dead Redemption 2/Profiles",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Cyberpunk 2077",
-        "path": "Saved Games\\CD Projekt Red\\Cyberpunk 2077",
+        "path": "Saved Games/CD Projekt Red/Cyberpunk 2077",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Dark Souls III",
-        "path": "AppData\\Roaming\\DarkSoulsIII",
+        "path": "AppData/Roaming/DarkSoulsIII",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Sekiro: Shadows Die Twice",
-        "path": "AppData\\Roaming\\Sekiro",
+        "path": "AppData/Roaming/Sekiro",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Minecraft",
-        "path": "AppData\\Roaming\\.minecraft\\saves",
+        "path": "AppData/Roaming/.minecraft/saves",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Fortnite",
-        "path": "AppData\\Local\\FortniteGame\\Saved\\SaveGames",
+        "path": "AppData/Local/FortniteGame/Saved/SaveGames",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "League of Legends",
-        "path": "Riot Games\\League of Legends\\Config",
+        "path": "Riot Games/League of Legends/Config",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Valorant",
-        "path": "AppData\\Local\\VALORANT\\Saved",
+        "path": "AppData/Local/VALORANT/Saved",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Overwatch",
-        "path": "Documents\\Overwatch\\Settings",
+        "path": "Documents/Overwatch/Settings",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Apex Legends",
-        "path": "Saved Games\\Respawn\\Apex",
+        "path": "Saved Games/Respawn/Apex",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Call of Duty: Modern Warfare",
-        "path": "Documents\\Call of Duty Modern Warfare\\players",
+        "path": "Documents/Call of Duty Modern Warfare/players",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Call of Duty: Warzone",
-        "path": "Documents\\Call of Duty Modern Warfare\\players",
+        "path": "Documents/Call of Duty Modern Warfare/players",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Battlefield V",
-        "path": "Documents\\Battlefield V\\settings",
+        "path": "Documents/Battlefield V/settings",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "FIFA 21",
-        "path": "Documents\\FIFA 21\\settings",
+        "path": "Documents/FIFA 21/settings",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "The Sims 4",
-        "path": "Documents\\Electronic Arts\\The Sims 4\\saves",
+        "path": "Documents/Electronic Arts/The Sims 4/saves",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Fallout 4",
-        "path": "Documents\\My Games\\Fallout4\\Saves",
+        "path": "Documents/My Games/Fallout4/Saves",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Skyrim",
-        "path": "Documents\\My Games\\Skyrim\\Saves",
+        "path": "Documents/My Games/Skyrim/Saves",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "DOOM Eternal",
-        "path": "Saved Games\\id Software\\DOOMEternal",
+        "path": "Saved Games/id Software/DOOMEternal",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Resident Evil 2",
-        "path": "Steam\\userdata\\[User ID]\\883710\\remote",
+        "path": "Steam/userdata/[User ID]/883710/remote",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Resident Evil 3",
-        "path": "Steam\\userdata\\[User ID]\\952060\\remote",
+        "path": "Steam/userdata/[User ID]/952060/remote",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Resident Evil Village",
-        "path": "Steam\\userdata\\[User ID]\\1196590\\remote",
+        "path": "Steam/userdata/[User ID]/1196590/remote",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Monster Hunter: World",
-        "path": "Steam\\userdata\\[User ID]\\582010\\remote",
+        "path": "Steam/userdata/[User ID]/582010/remote",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Hades",
-        "path": "Documents\\Saved Games\\Hades",
+        "path": "Documents/Saved Games/Hades",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Among Us",
-        "path": "AppData\\LocalLow\\Innersloth\\Among Us",
+        "path": "AppData/LocalLow/Innersloth/Among Us",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Stardew Valley",
-        "path": "AppData\\Roaming\\StardewValley\\Saves",
+        "path": "AppData/Roaming/StardewValley/Saves",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Terraria",
-        "path": "Documents\\My Games\\Terraria\\Players",
+        "path": "Documents/My Games/Terraria/Players",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Hollow Knight",
-        "path": "AppData\\LocalLow\\Team Cherry\\Hollow Knight",
+        "path": "AppData/LocalLow/Team Cherry/Hollow Knight",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Celeste",
-        "path": "AppData\\Roaming\\Celeste",
+        "path": "AppData/Roaming/Celeste",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Dead Cells",
-        "path": "AppData\\Local\\DeadCells",
+        "path": "AppData/Local/DeadCells",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Subnautica",
-        "path": "Subnautica\\SavedGames",
+        "path": "Subnautica/SavedGames",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "No Man's Sky",
-        "path": "AppData\\Roaming\\HelloGames\\NMS",
+        "path": "AppData/Roaming/HelloGames/NMS",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Control",
-        "path": "Documents\\My Games\\Control\\Saves",
+        "path": "Documents/My Games/Control/Saves",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Metro Exodus",
-        "path": "Saved Games\\metro exodus",
+        "path": "Saved Games/metro exodus",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Shadow of the Tomb Raider",
-        "path": "Documents\\Shadow of the Tomb Raider\\Saves",
+        "path": "Documents/Shadow of the Tomb Raider/Saves",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Assassin's Creed Odyssey",
-        "path": "Documents\\Assassin's Creed Odyssey\\Saves",
+        "path": "Documents/Assassin's Creed Odyssey/Saves",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Assassin's Creed Valhalla",
-        "path": "Documents\\Assassin's Creed Valhalla\\Saves",
+        "path": "Documents/Assassin's Creed Valhalla/Saves",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Far Cry 5",
-        "path": "Documents\\My Games\\Far Cry 5\\Saved Games",
+        "path": "Documents/My Games/Far Cry 5/Saved Games",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Half-Life 2",
-        "path": "Steam\\steamapps\\common\\Half-Life 2\\hl2\\SAVE",
+        "path": "Steam/steamapps/common/Half-Life 2/hl2/SAVE",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Portal 2",
-        "path": "Steam\\userdata\\[User ID]\\620\\remote",
+        "path": "Steam/userdata/[User ID]/620/remote",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Left 4 Dead 2",
-        "path": "Steam\\userdata\\[User ID]\\550\\remote",
+        "path": "Steam/userdata/[User ID]/550/remote",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Team Fortress 2",
-        "path": "Steam\\userdata\\[User ID]\\440\\remote",
+        "path": "Steam/userdata/[User ID]/440/remote",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Counter-Strike: Global Offensive",
-        "path": "Steam\\userdata\\[User ID]\\730\\remote",
+        "path": "Steam/userdata/[User ID]/730/remote",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Dota 2",
-        "path": "Steam\\userdata\\[User ID]\\570\\remote",
+        "path": "Steam/userdata/[User ID]/570/remote",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "PUBG: Battlegrounds",
-        "path": "Steam\\userdata\\[User ID]\\578080\\remote",
+        "path": "Steam/userdata/[User ID]/578080/remote",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Rocket League",
-        "path": "Documents\\My Games\\Rocket League\\TAGame\\SaveData",
+        "path": "Documents/My Games/Rocket League/TAGame/SaveData",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Destiny 2",
-        "path": "AppData\\Roaming\\Bungie\\DestinyPC\\prefs",
+        "path": "AppData/Roaming/Bungie/DestinyPC/prefs",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Genshin Impact",
-        "path": "Program Files\\Genshin Impact\\Genshin Impact Game\\save",
+        "path": "Program Files/Genshin Impact/Genshin Impact Game/save",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "World of Warcraft",
-        "path": "Program Files (x86)\\World of Warcraft\\_retail_\\WTF",
+        "path": "Program Files (x86)/World of Warcraft/_retail_/WTF",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Diablo III",
-        "path": "Documents\\Diablo III",
+        "path": "Documents/Diablo III",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "StarCraft II",
-        "path": "Documents\\StarCraft II\\Accounts",
+        "path": "Documents/StarCraft II/Accounts",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Hearthstone",
-        "path": "AppData\\Local\\Blizzard\\Hearthstone",
+        "path": "AppData/Local/Blizzard/Hearthstone",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Heroes of the Storm",
-        "path": "Documents\\Heroes of the Storm\\Accounts",
+        "path": "Documents/Heroes of the Storm/Accounts",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Overcooked! 2",
-        "path": "AppData\\Roaming\\Overcooked2",
+        "path": "AppData/Roaming/Overcooked2",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Cuphead",
-        "path": "AppData\\Roaming\\Cuphead",
+        "path": "AppData/Roaming/Cuphead",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Hollow Knight",
-        "path": "AppData\\LocalLow\\Team Cherry\\Hollow Knight",
+        "path": "AppData/LocalLow/Team Cherry/Hollow Knight",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Ori and the Blind Forest",
-        "path": "Users\\[Username]\\AppData\\Local\\Ori and the Blind Forest DE",
+        "path": "Users/[Username]/AppData/Local/Ori and the Blind Forest DE",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Ori and the Will of the Wisps",
-        "path": "Users\\[Username]\\AppData\\Local\\Ori and the Will of the Wisps",
+        "path": "Users/[Username]/AppData/Local/Ori and the Will of the Wisps",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Celeste",
-        "path": "AppData\\Roaming\\Celeste",
+        "path": "AppData/Roaming/Celeste",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Dead Cells",
-        "path": "AppData\\Local\\DeadCells",
+        "path": "AppData/Local/DeadCells",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Subnautica",
-        "path": "Subnautica\\SavedGames",
+        "path": "Subnautica/SavedGames",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "No Man's Sky",
-        "path": "AppData\\Roaming\\HelloGames\\NMS",
+        "path": "AppData/Roaming/HelloGames/NMS",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Control",
-        "path": "Documents\\My Games\\Control\\Saves",
+        "path": "Documents/My Games/Control/Saves",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Metro Exodus",
-        "path": "Saved Games\\metro exodus",
+        "path": "Saved Games/metro exodus",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Shadow of the Tomb Raider",
-        "path": "Documents\\Shadow of the Tomb Raider\\Saves",
+        "path": "Documents/Shadow of the Tomb Raider/Saves",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Assassin's Creed Odyssey",
-        "path": "Documents\\Assassin's Creed Odyssey\\Saves",
+        "path": "Documents/Assassin's Creed Odyssey/Saves",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Assassin's Creed Valhalla",
-        "path": "Documents\\Assassin's Creed Valhalla\\Saves",
+        "path": "Documents/Assassin's Creed Valhalla/Saves",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Far Cry 5",
-        "path": "Documents\\My Games\\Far Cry 5\\Saved Games",
+        "path": "Documents/My Games/Far Cry 5/Saved Games",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Far Cry New Dawn",
-        "path": "Documents\\My Games\\Far Cry New Dawn\\Saved Games",
+        "path": "Documents/My Games/Far Cry New Dawn/Saved Games",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Far Cry 6",
-        "path": "Documents\\My Games\\Far Cry 6\\Saved Games",
+        "path": "Documents/My Games/Far Cry 6/Saved Games",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Watch Dogs 2",
-        "path": "Documents\\My Games\\Watch_Dogs 2\\Saves",
+        "path": "Documents/My Games/Watch_Dogs 2/Saves",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Watch Dogs: Legion",
-        "path": "Documents\\My Games\\Watch Dogs Legion\\Saves",
+        "path": "Documents/My Games/Watch Dogs Legion/Saves",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Rainbow Six Siege",
-        "path": "Documents\\My Games\\Rainbow Six - Siege\\[User ID]\\Saves",
+        "path": "Documents/My Games/Rainbow Six - Siege/[User ID]/Saves",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "For Honor",
-        "path": "Documents\\My Games\\For Honor\\[User ID]\\Saves",
+        "path": "Documents/My Games/For Honor/[User ID]/Saves",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Ghost Recon Wildlands",
-        "path": "Documents\\My Games\\Ghost Recon Wildlands\\Saves",
+        "path": "Documents/My Games/Ghost Recon Wildlands/Saves",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "Ghost Recon Breakpoint",
-        "path": "Documents\\My Games\\Ghost Recon Breakpoint\\Saves",
+        "path": "Documents/My Games/Ghost Recon Breakpoint/Saves",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "The Division",
-        "path": "Documents\\My Games\\Tom Clancy's The Division\\Saves",
+        "path": "Documents/My Games/Tom Clancy's The Division/Saves",
+        "size": 0,
         "last_save": ""
     },
     {
         "game": "The Division 2",
-        "path": "Documents\\My Games\\Tom Clancy's The Division 2\\Saves",
+        "path": "Documents/My Games/Tom Clancy's The Division 2/Saves",
+        "size": 0,
         "last_save": ""
     }
 ]

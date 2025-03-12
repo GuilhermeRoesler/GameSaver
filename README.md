@@ -27,7 +27,7 @@ GameSaver scans your computer for game saves and organizes them efficiently. It 
 ## 🛠️ Technologies Used
 
 - **Python 3.13.2**
-- **Libraries:** `os`, `sys`, `shutil`, `json`, `tkinter`
+- **Libraries:** `os`, `sys`, `shutil`, `json`, `PyQt6`
 
 ## 📋 System Requirements
 
