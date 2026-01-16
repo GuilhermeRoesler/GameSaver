@@ -1,6 +1,8 @@
 # 🎮 GameSaver - Manage Your Game Saves with Ease
 
-![](images/dashboard.png)
+<p align="center">
+   <img src="images/dashboard.png" width="400">
+</p>
 
 ## 📌 About the Project
 
