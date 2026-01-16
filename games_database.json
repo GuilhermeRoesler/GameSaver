@@ -48,6 +48,60 @@
         "last_save": ""
     },
     {
+        "game": "Anki",
+        "path": "AppData/Roaming/Anki2/addons21",
+        "size": 0,
+        "last_save": ""
+    },
+    {
+        "game": "Cheat Engine",
+        "path": "Documents/My Cheat Tables",
+        "size": 0,
+        "last_save": ""
+    },
+    {
+        "game": "Assassin's Creed 2 (SKIDROW)",
+        "path": "AppData/Local/storage",
+        "size": 0,
+        "last_save": ""
+    },
+    {
+        "game": "Jurassic World Evolution 2",
+        "path": "Saved Games/Frontier Developments/Jurassic World Evolution 2",
+        "size": 0,
+        "last_save": ""
+    },
+    {
+        "game": "Need for Speed Heat",
+        "path": "Documents/Need for Speed Heat",
+        "size": 0,
+        "last_save": ""
+    },
+    {
+        "game": "AppData folder",
+        "path": "AppData",
+        "size": 0,
+        "last_save": ""
+    },
+    {
+        "game": "My Games folder",
+        "path": "Documents/My Games",
+        "size": 0,
+        "last_save": ""
+    },
+    {
+        "game": "Saved Games folder",
+        "path": "Saved Games",
+        "size": 0,
+        "last_save": ""
+    },
+    {
+        "game": "Syncthing",
+        "path": "AppData/Local/Syncthing",
+        "size": 0,
+        "last_save": ""
+    },
+    {
         "game": "The Witcher 3: Wild Hunt",
         "path": "Documents/The Witcher 3/gamesaves",
         "size": 0,

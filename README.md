@@ -1,5 +1,7 @@
 # 🎮 GameSaver - Manage Your Game Saves with Ease
 
+![](images/dashboard.png)
+
 ## 📌 About the Project
 
 **GameSaver** is a powerful tool for managing saves from all detected games on your computer. It allows you to:
@@ -22,7 +24,7 @@ Imagine you are playing multiple local games, and you want to ensure your progre
 
 GameSaver scans your computer for game saves and organizes them efficiently. It can also distribute previously stored saves to the respective game directories, ensuring you always have your progress safe and available. You can manually add any path and it will save the corresponding folder.
 
-![example](imgs/Capturar.png)
+![example](images/example1.png)
 
 ## 🛠️ Technologies Used
 
@@ -39,7 +41,9 @@ GameSaver scans your computer for game saves and organizes them efficiently. It 
 ## 📥 Installation
 
 > Install the **pre-built executable** at [Releases](https://github.com/GuilhermeRoesler/GameSaver/releases) section on **GitHub** and **run it!**
+
 ---
+
 But if you don't want to install the **pre-built executable**, you can run it **locally**, as taught **below**:
 
 1. **Clone this repository:**
@@ -72,9 +76,9 @@ Add your games in the following format:
 
 ```json
 {
-    "game": "Game Name",
-    "path": "\\AppData\\Roaming\\YourGame",
-    "last_save": ""
+  "game": "Game Name",
+  "path": "\\AppData\\Roaming\\YourGame",
+  "last_save": ""
 }
 ```
 

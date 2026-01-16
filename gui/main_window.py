@@ -8,11 +8,24 @@ from settings import Settings
 from .settings_widget import SettingsWidget
 from .game_list_widget import GameListWidget
 
+# Obtém a resolução da tela atual
+        # screen = QApplication.primaryScreen()
+        # screen_geometry = screen.availableGeometry()
+        
+        # # Verifica se a resolução da tela suporta 800x800
+        # if screen_geometry.width() >= 800 and screen_geometry.height() >= 800:
+        #     self.setMinimumSize(800, 800)
+        #     self.resize(800, 800)
+        # else:
+        #     self.setMinimumSize(800, 600)
+        #     self.resize(800, 600)
+
 class GameSaverWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("GameSaver")
-        self.setMinimumSize(800, 800)
+        self.setMinimumSize(800, 600)
+        self.resize(800, 800)
         # self.showMaximized()
         
         create_default_files()

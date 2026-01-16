@@ -14,7 +14,7 @@ def run() -> None:
 
 def loadGUI():
     app = QApplication(sys.argv)
-    app.setWindowIcon(QIcon('imgs/icon.png'))
+    app.setWindowIcon(QIcon('images/icon.png'))
     app.setStyleSheet(load_stylesheet('gui/styles.qss'))
     window = GameSaverWindow()
     window.show()
