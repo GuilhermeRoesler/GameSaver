@@ -1,5 +1,7 @@
 # GameSaver — Referência Detalhada
 
+> Documentação viva para desenvolvedores. Mantida em sincronia com o código e o [README.md](../../README.md).
+
 ## Fluxo collect (backup)
 
 1. Usuário define `user_location` (home) e `destination_location` (padrão `SAVES/`).

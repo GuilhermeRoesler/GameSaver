@@ -5,6 +5,16 @@ description: Especificações completas do GameSaver — app desktop Python/PyQt
 
 # GameSaver — Especificações do Projeto
 
+## Documentação viva
+
+| Documento | Público | Escopo |
+|-----------|---------|--------|
+| `README.md` | Usuários e contribuidores | Instalação, uso, configuração |
+| Este arquivo (`SKILL.md`) | Desenvolvedores e agentes | Arquitetura, convenções, workflows |
+| `reference.md` | Desenvolvedores | Fluxos detalhados, CI/CD, checklist de PR |
+
+**Regra:** ao alterar comportamento do código, atualizar README (se impacta usuário) e esta skill (se impacta arquitetura/convenções) no mesmo PR.
+
 ## Visão geral
 
 GameSaver detecta jogos instalados, copia pastas de save para uma pasta central de backup (`collect`) e (futuro) restaura saves para os diretórios originais (`spread`).
@@ -183,7 +193,6 @@ Scripts auxiliares: `run.bat` / `run.sh` (mensagens em português).
 | Size na tabela | Hardcoded `'0 Kb'` |
 | `images/icon.png` | Referenciado em `main.py`, ausente no repo |
 | `get_save_destination()` | Lógica inconsistente com `copy_selected_games()` |
-| README | Menciona `games.json` como banco principal; correto é `games_database.json` |
 
 Consulte [reference.md](reference.md) para detalhes de CI/CD, testes e checklist de PR.
 

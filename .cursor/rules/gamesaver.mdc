@@ -11,7 +11,7 @@ App desktop Python/PyQt6 para backup e restore de saves de jogos locais (Windows
 
 Leia e siga a skill **gamesaver** em `.cursor/skills/gamesaver/SKILL.md`.
 
-Ela contém arquitetura, convenções, modelos de dados, segurança de paths, comandos e roadmap.
+Ela contém arquitetura, convenções, modelos de dados, segurança de paths, comandos e roadmap. Ao mudar comportamento, manter README.md e a skill sincronizados (documentação viva).
 
 ## Regras rápidas
 
