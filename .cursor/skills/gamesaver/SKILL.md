@@ -47,8 +47,8 @@ gamesaver/
   gui/
     main_window.py
     game_list_widget.py
-    settings_widget.py
-    workers.py               # QThread para collect/spread
+    settings_widget.py       # user/destination/mode + persistência
+    workers.py               # QThread para collect/spread (cancelável)
     styles.qss
 games_database.json
 images/icon.png
@@ -205,7 +205,7 @@ Scripts auxiliares: `run.bat` / `run.sh` (mensagens em português).
 
 ## Problemas conhecidos
 
-Nenhum bug estrutural aberto no momento. Gaps opcionais: testes de GUI, seletor de `mode` na interface gráfica.
+Nenhum bug estrutural aberto no momento.
 
 Consulte [reference.md](reference.md) para detalhes de CI/CD, testes e checklist de PR.
 

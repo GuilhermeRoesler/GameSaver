@@ -27,9 +27,9 @@ Espelho do collect:
 | Widget | Arquivo | Função |
 |--------|---------|--------|
 | `GameSaverWindow` | `gamesaver/gui/main_window.py` | Janela principal, layout |
-| `SettingsWidget` | `gamesaver/gui/settings_widget.py` | Campos user/destination, browse, persistência |
-| `GameListWidget` | `gamesaver/gui/game_list_widget.py` | Tabela, busca, collect/spread |
-| `OperationWorker` | `gamesaver/gui/workers.py` | QThread para operações longas |
+| `SettingsWidget` | `gamesaver/gui/settings_widget.py` | Campos user/destination/mode, browse, persistência |
+| `GameListWidget` | `gamesaver/gui/game_list_widget.py` | Tabela, busca, collect/spread com cancelamento |
+| `OperationWorker` | `gamesaver/gui/workers.py` | QThread para operações longas (suporta interrupção) |
 
 Sinais:
 - `SettingsWidget.locations_changed` → recarrega lista de jogos instalados.
@@ -54,12 +54,14 @@ tests/
   test_adapters.py        # argparse, GameManager, Settings save
   test_bootstrap.py       # create_default_files
   test_utils.py           # colored helpers
+  test_gui.py             # SettingsWidget, filter, worker cancel
 ```
 
 Padrões:
 - `@pytest.mark.parametrize` para validação de path.
 - `tmp_path` para I/O temporário.
-- Cobertura mínima 60% no pacote `gamesaver` (GUI omitida).
+- GUI: `pytest-qt` + `QT_QPA_PLATFORM=offscreen` no CI.
+- Cobertura mínima 60% no pacote `gamesaver` (widgets omitidos do relatório de cobertura).
 
 ## CI/CD
 

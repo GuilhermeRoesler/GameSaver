@@ -17,6 +17,7 @@ class GameListWidget(QWidget):
         self._games: list[GameEntry] = []
         self._worker: OperationWorker | None = None
         self._progress_dialog: QProgressDialog | None = None
+        self._cancelled = False
 
         self.init_ui()
         self.update_games()
@@ -105,13 +106,21 @@ class GameListWidget(QWidget):
         if reply != QMessageBox.StandardButton.Yes:
             return
 
-        self._progress_dialog = QProgressDialog(progress_title, None, 0, len(selected_games), self)
+        self._cancelled = False
+        self._progress_dialog = QProgressDialog(
+            progress_title,
+            "Cancel",
+            0,
+            len(selected_games),
+            self,
+        )
         self._progress_dialog.setWindowTitle("GameSaver")
         self._progress_dialog.setWindowModality(Qt.WindowModality.WindowModal)
         self._progress_dialog.setMinimumDuration(0)
         self._progress_dialog.setValue(0)
         self._progress_dialog.setAutoClose(False)
         self._progress_dialog.setAutoReset(False)
+        self._progress_dialog.canceled.connect(self._cancel_operation)
 
         self._worker = OperationWorker(
             self.game_manager.backup_service,
@@ -123,6 +132,11 @@ class GameListWidget(QWidget):
             lambda report: self._on_finished(report, operation),
         )
         self._worker.start()
+
+    def _cancel_operation(self) -> None:
+        self._cancelled = True
+        if self._worker is not None and self._worker.isRunning():
+            self._worker.requestInterruption()
 
     def _on_progress(self, current: int, total: int, game_name: str) -> None:
         if self._progress_dialog is None:
@@ -142,8 +156,10 @@ class GameListWidget(QWidget):
 
     def _show_report(self, report: BackupReport, operation: str) -> None:
         action = "backup" if operation == 'collect' else "restore"
+        cancelled = [result for result in report.failures if result.message == "Cancelled by user"]
+        prefix = "cancelled" if self._cancelled or cancelled else "completed"
         lines = [
-            f"{action.title()} completed: {len(report.successes)} succeeded, {len(report.failures)} failed.",
+            f"{action.title()} {prefix}: {len(report.successes)} succeeded, {len(report.failures)} failed.",
         ]
 
         if report.failures:
@@ -155,7 +171,9 @@ class GameListWidget(QWidget):
                 lines.append(f"- ... and {len(report.failures) - 5} more")
 
         icon = QMessageBox.Icon.Information
-        if report.failures and not report.successes:
+        if self._cancelled or cancelled:
+            icon = QMessageBox.Icon.Warning
+        elif report.failures and not report.successes:
             icon = QMessageBox.Icon.Critical
         elif report.failures:
             icon = QMessageBox.Icon.Warning

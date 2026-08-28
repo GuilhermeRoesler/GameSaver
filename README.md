@@ -124,7 +124,7 @@ To add a game that is not in the built-in database, edit `games.json`. Paths mus
 ### Graphical interface (default)
 
 1. Launch with `python -m gamesaver`.
-2. Set **User Location** and **Destination** in the settings panel.
+2. Set **User Location**, **Destination**, and **Mode** in the settings panel.
 3. Browse detected games in the table (use search to filter).
 4. Select one or more games and click **Collect Saves** or **Spread Saves**.
 
