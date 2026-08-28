@@ -133,6 +133,8 @@ Nunca contornar essas validações.
 
 ## PyInstaller (modo frozen)
 
+`GameSaver.spec` deve usar `main.py` como script de entrada (imports absolutos). **Não** apontar `Analysis` para `gamesaver/__main__.py` — o PyInstaller roda o arquivo como script solto e os imports relativos falham com `ImportError: attempted relative import with no known parent package`.
+
 `constants.py` trata executável empacotado:
 
 - `BASE_DIR` = diretório do `.exe` quando `sys.frozen`.

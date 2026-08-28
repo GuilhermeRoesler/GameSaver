@@ -73,6 +73,7 @@ Padrões:
 ### release.yml
 - Trigger: tags `v*`.
 - Build multi-OS com `GameSaver.spec` (PyInstaller).
+- Entry do spec: `main.py` (não `gamesaver/__main__.py` — imports relativos quebram no frozen).
 - Publica artefatos no GitHub Releases.
 
 ## Adicionar jogo — exemplos de paths válidos

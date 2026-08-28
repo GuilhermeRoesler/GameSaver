@@ -1,7 +1,9 @@
 # -*- mode: python ; coding: utf-8 -*-
 
 a = Analysis(
-    ['gamesaver/__main__.py'],
+    # Use the thin absolute-import entry point. Packaging gamesaver/__main__.py
+    # directly breaks relative imports ("attempted relative import with no known parent package").
+    ['main.py'],
     pathex=[],
     binaries=[],
     datas=[
