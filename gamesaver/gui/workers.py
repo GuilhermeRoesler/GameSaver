@@ -1,7 +1,7 @@
 from PyQt6.QtCore import QThread, pyqtSignal
 
-from backup_service import BackupService
-from models import BackupReport, GameEntry, OperationResult
+from ..backup_service import BackupService
+from ..models import BackupReport, GameEntry, OperationResult
 
 
 class OperationWorker(QThread):

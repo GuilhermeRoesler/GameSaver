@@ -22,27 +22,39 @@ GameSaver detecta jogos instalados, copia pastas de save para uma pasta central 
 | Modo | Status | Descrição |
 |------|--------|-----------|
 | `collect` | ✅ Implementado | Backup de saves para pasta de destino |
-| `spread` | ⚠️ Stub | Restore — ainda não implementado |
-| GUI (PyQt6) | ✅ Padrão | `isGUI = True` em `main.py` |
-| CLI (colorama) | ✅ Alternativo | `isGUI = False` |
+| `spread` | ✅ Implementado | Restore de saves para diretórios originais |
+| GUI (PyQt6) | ✅ Padrão | `python -m gamesaver` ou `python main.py` |
+| CLI (colorama) | ✅ Alternativo | `python -m gamesaver --cli` |
 
 ## Estrutura do projeto
 
 ```
-main.py              # Entry point (GUI ou CLI)
-constants.py         # Paths, defaults, textos ASCII
-settings.py          # Classe Settings (load/validate/prompt CLI)
-game_manager.py      # Detecção de jogos, collect/spread
-file_handler.py      # I/O JSON, cópia, validação de paths
-utils.py             # Helpers de terminal colorido
-games_database.json  # Banco embarcado (75 jogos, versionado)
-gui/
-  main_window.py     # QMainWindow principal
-  game_list_widget.py
-  settings_widget.py
-  styles.qss         # Tema escuro (#1E1E1E, accent #007AFF)
+main.py                      # Entry point fino (delega para gamesaver)
+gamesaver/
+  __main__.py                # argparse (--cli), bootstrap GUI/CLI
+  constants.py               # Paths, defaults, PyInstaller
+  models.py                  # GameEntry, AppSettings, BackupReport
+  path_policy.py             # Validação e resolução de paths
+  backup_service.py          # Lógica collect/spread (sem I/O de UI)
+  repositories.py            # GameRepository, SettingsRepository
+  file_handler.py            # JSON I/O, bootstrap de arquivos
+  file_utils.py              # Tamanho, timestamps, formatação
+  game_manager.py            # Facade CLI (print/input)
+  settings.py                # Facade de settings com prompts CLI
+  utils.py                   # Helpers colorama
+  gui/
+    main_window.py
+    game_list_widget.py
+    settings_widget.py
+    workers.py               # QThread para collect/spread
+    styles.qss
+games_database.json          # Banco embarcado (75 jogos)
+GameSaver.spec               # Build PyInstaller
 tests/
   test_file_handler.py
+  test_backup_service.py
+  test_adapters.py
+  test_bootstrap.py
   test_utils.py
 ```
 
@@ -51,21 +63,24 @@ Arquivos gerados em runtime (gitignored): `games.json`, `settings.json`, `SAVES/
 ## Arquitetura
 
 ```
-main.py          → bootstrap (GUI ou CLI)
-constants.py     → configuração global e paths (incl. PyInstaller frozen)
-settings.py      → objeto Settings com load/validate
-game_manager.py  → orquestração: detectar jogos, collect/spread
-file_handler.py  → operações de I/O e segurança de paths
-utils.py         → utilitários de terminal
-gui/*            → camada de apresentação PyQt6
+gamesaver/__main__.py  → argparse + bootstrap (GUI ou CLI)
+gamesaver/constants.py → configuração global e paths (incl. PyInstaller frozen)
+gamesaver/settings.py  → facade Settings (load/validate/save)
+gamesaver/game_manager.py → facade CLI sobre BackupService
+gamesaver/backup_service.py → orquestração pura: collect/spread
+gamesaver/repositories.py → persistência JSON
+gamesaver/path_policy.py → segurança de paths
+gamesaver/file_handler.py → operações de I/O
+gamesaver/gui/*        → camada de apresentação PyQt6 + workers assíncronos
 ```
 
 ### Responsabilidades
 
-- **GameManager**: carrega `games_database.json` + `games.json`, detecta jogos instalados, executa backup.
-- **file_handler**: JSON I/O, `shutil.copytree`, validação de segurança de paths.
-- **Settings**: carrega/valida `settings.json`; prompts interativos no CLI.
-- **GUI**: widgets PyQt6 com sinais (`SettingsWidget.locations_changed` atualiza lista de jogos).
+- **BackupService**: collect/spread sem print/input; retorna `BackupReport`.
+- **GameManager**: adaptador CLI; imprime resultados e pede confirmação via terminal.
+- **GameRepository**: carrega `games_database.json` + `games.json`.
+- **SettingsRepository**: load/save de `settings.json`.
+- **GUI**: uma instância de `GameManager`; operações via `OperationWorker` (QThread).
 
 ## Modelos de dados
 
@@ -149,15 +164,17 @@ Evitar adicionar novas dependências sem necessidade clara.
 ```bash
 # Desenvolvimento
 pip install -r requirements.txt -r requirements-dev.txt
-python main.py
+python -m gamesaver          # GUI
+python -m gamesaver --cli    # CLI
 
 # Qualidade
 ruff check .
-pytest -v
+mypy
+pytest -v --cov=gamesaver
 
 # Build local (Windows)
 pip install pyinstaller
-pyinstaller --onefile --add-data "games_database.json;." --add-data "gui/styles.qss;gui" main.py
+pyinstaller GameSaver.spec --noconfirm --clean
 ```
 
 Scripts auxiliares: `run.bat` / `run.sh` (mensagens em português).
@@ -188,11 +205,7 @@ Scripts auxiliares: `run.bat` / `run.sh` (mensagens em português).
 
 | Issue | Detalhe |
 |-------|---------|
-| CLI quebrado | `main.py` passa args a `GameManager(...)`, mas `__init__` não aceita |
-| Settings GUI | Alterações não persistem em `settings.json` |
-| Size na tabela | Hardcoded `'0 Kb'` |
-| `images/icon.png` | Referenciado em `main.py`, ausente no repo |
-| `get_save_destination()` | Lógica inconsistente com `copy_selected_games()` |
+| `images/icon.png` | Referenciado quando existente; ausente no repo |
 
 Consulte [reference.md](reference.md) para detalhes de CI/CD, testes e checklist de PR.
 

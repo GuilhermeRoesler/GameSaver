@@ -1,6 +1,6 @@
 import pytest
 
-from utils import COLORS, colored, colored_multi
+from gamesaver.utils import COLORS, colored, colored_multi
 
 
 def test_colored_uses_known_color():

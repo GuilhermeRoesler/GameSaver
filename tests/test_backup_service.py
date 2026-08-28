@@ -2,12 +2,11 @@ import os
 
 import pytest
 
-from backup_service import BackupService
-from file_utils import format_size
-from models import GameEntry
-from path_policy import validate_spread_paths
-from repositories import SettingsRepository
-from models import AppSettings
+from gamesaver.backup_service import BackupService
+from gamesaver.file_utils import format_size
+from gamesaver.models import AppSettings, GameEntry
+from gamesaver.path_policy import validate_spread_paths
+from gamesaver.repositories import SettingsRepository
 
 
 def test_collect_game_copies_save_folder(tmp_path):

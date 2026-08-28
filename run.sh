@@ -23,4 +23,4 @@ echo "Instalando dependencias..."
 python -m pip install -r requirements.txt -q
 
 echo "Iniciando GameSaver..."
-python main.py
+python -m gamesaver

@@ -1,15 +1,16 @@
 import os
+from typing import Any
 
-from constants import USER_DEFAULT_PATH, DESTINATION_DEFAULT_PATH
-from models import AppSettings
-from repositories import SettingsRepository
-from utils import printc, colored_multi
+from .constants import USER_DEFAULT_PATH, DESTINATION_DEFAULT_PATH
+from .models import AppSettings
+from .repositories import SettingsRepository
+from .utils import printc, colored_multi
 
 
 class Settings:
     def __init__(self):
         self._repository = SettingsRepository()
-        self._data = AppSettings(
+        self._data: AppSettings = AppSettings(
             user_location=USER_DEFAULT_PATH,
             destination_location=DESTINATION_DEFAULT_PATH,
             mode='collect',
@@ -47,7 +48,7 @@ class Settings:
     def save(self) -> None:
         self._repository.save(self._data)
 
-    def to_dict(self) -> dict:
+    def to_dict(self) -> dict[str, Any]:
         return self._data.to_dict()
 
     def check(self) -> None:

@@ -18,7 +18,7 @@
 | Command-line interface (colorama) | ✅ Alternative |
 | Search and multi-select games in the GUI | ✅ |
 | Path safety validation | ✅ |
-| Restore saves (`spread` mode) | 🚧 Coming soon |
+| Restore saves (`spread` mode) | ✅ |
 
 With **GameSaver**, you can:
 
@@ -33,7 +33,7 @@ With **GameSaver**, you can:
 1. Set your **user location** (home directory) and **destination** (backup folder, default `SAVES/`).
 2. GameSaver checks which game save paths exist under your user location.
 3. In **collect** mode, selected save folders are copied to the destination.
-4. In **spread** mode *(planned)*, backed-up saves will be copied back to their original game directories.
+4. In **spread** mode, backed-up saves are copied back to their original game directories.
 
 Paths are relative to your home directory and validated to prevent overly broad copies (e.g. entire `AppData` or `Documents` folders).
 
@@ -68,7 +68,7 @@ Paths are relative to your home directory and validated to prevent overly broad 
    ```
 3. **Run the application:**
    ```sh
-   python main.py
+   python -m gamesaver
    ```
 
    On first run, `settings.json` and `games.json` are created automatically.
@@ -98,7 +98,7 @@ Created automatically on first run:
 |-------|-------------|
 | `user_location` | Your home/user directory (save paths are relative to this) |
 | `destination_location` | Where backups are stored |
-| `mode` | `collect` (backup) or `spread` (restore, not yet implemented) |
+| `mode` | `collect` (backup) or `spread` (restore) |
 
 ### Games database
 
@@ -123,40 +123,44 @@ To add a game that is not in the built-in database, edit `games.json`. Paths mus
 
 ### Graphical interface (default)
 
-1. Launch with `python main.py`.
+1. Launch with `python -m gamesaver`.
 2. Set **User Location** and **Destination** in the settings panel.
 3. Browse detected games in the table (use search to filter).
-4. Select one or more games and click **Collect Saves**.
-5. **Spread Saves** is not yet available.
+4. Select one or more games and click **Collect Saves** or **Spread Saves**.
 
 ### Command-line interface
 
-Set `isGUI = False` in `main.py`, then run:
-
 ```sh
-python main.py
+python -m gamesaver --cli
 ```
 
 The CLI prompts for settings and runs the operation defined in `settings.json`.
-
-> **Note:** The CLI path is currently being aligned with the GUI API. Prefer the graphical interface for day-to-day use.
 
 ## 📂 Project Structure
 
 ```
 GameSaver/
-├── main.py                  # Entry point (GUI or CLI)
-├── constants.py             # Paths, defaults, PyInstaller support
-├── settings.py              # Settings load/validate
-├── game_manager.py          # Game detection and backup logic
-├── file_handler.py          # JSON I/O, file copy, path validation
-├── utils.py                 # Terminal color helpers
+├── main.py                  # Thin entry point
+├── gamesaver/
+│   ├── __main__.py          # argparse (--cli), GUI/CLI bootstrap
+│   ├── constants.py         # Paths, defaults, PyInstaller support
+│   ├── models.py            # Typed domain models
+│   ├── path_policy.py       # Path validation and resolution
+│   ├── backup_service.py    # Collect/spread business logic
+│   ├── repositories.py      # JSON persistence
+│   ├── settings.py          # Settings facade
+│   ├── game_manager.py      # CLI facade
+│   ├── file_handler.py      # JSON I/O, bootstrap files
+│   ├── file_utils.py        # Size/timestamp helpers
+│   ├── utils.py             # Terminal color helpers
+│   └── gui/
+│       ├── main_window.py
+│       ├── game_list_widget.py
+│       ├── settings_widget.py
+│       ├── workers.py       # Async backup/restore
+│       └── styles.qss
 ├── games_database.json      # Built-in game database (75 games)
-├── gui/
-│   ├── main_window.py       # Main window
-│   ├── game_list_widget.py  # Game table, search, collect
-│   ├── settings_widget.py   # User/destination settings
-│   └── styles.qss           # Dark theme stylesheet
+├── GameSaver.spec           # PyInstaller spec
 ├── tests/                   # pytest test suite
 ├── images/                  # Screenshots and assets
 ├── .cursor/
@@ -165,7 +169,7 @@ GameSaver/
 ├── requirements.txt         # Production dependencies
 ├── requirements-dev.txt     # Development dependencies
 ├── requirements-build.txt   # Build dependencies (PyInstaller)
-└── pyproject.toml           # ruff and pytest configuration
+└── pyproject.toml           # ruff, mypy, pytest and coverage configuration
 ```
 
 Runtime files (created automatically, not versioned): `settings.json`, `games.json`, `SAVES/`, `Backup/`.
@@ -177,13 +181,14 @@ Runtime files (created automatically, not versioned): `settings.json`, `games.js
 pip install -r requirements.txt -r requirements-dev.txt
 
 # Run the app
-python main.py
+python -m gamesaver
 
-# Lint
+# Lint and type check
 ruff check .
+mypy
 
-# Tests
-pytest -v
+# Tests with coverage
+pytest -v --cov=gamesaver
 ```
 
 CI runs lint and tests on every push/PR to `main`/`master`.
@@ -196,16 +201,10 @@ Install PyInstaller:
 pip install -r requirements-build.txt
 ```
 
-**Windows:**
+**Windows / Linux / macOS:**
 
 ```sh
-pyinstaller --onefile --add-data "games_database.json;." --add-data "gui/styles.qss;gui" main.py
-```
-
-**Linux/macOS:**
-
-```sh
-pyinstaller --onefile --add-data "games_database.json:." --add-data "gui/styles.qss:gui" main.py
+pyinstaller GameSaver.spec --noconfirm --clean
 ```
 
 The executable appears in `dist/`. Releases are built automatically via GitHub Actions when a `v*` tag is pushed.

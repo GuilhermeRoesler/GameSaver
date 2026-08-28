@@ -1,9 +1,9 @@
 import os
 import shutil
 
-from file_utils import format_timestamp, get_directory_size, get_latest_mtime
-from models import BackupReport, GameEntry, OperationResult
-from path_policy import (
+from .file_utils import format_timestamp, get_directory_size, get_latest_mtime
+from .models import BackupReport, GameEntry, OperationResult
+from .path_policy import (
     is_safe_game_path,
     resolve_backup_destination,
     resolve_spread_paths,

@@ -2,7 +2,7 @@ import os
 
 import pytest
 
-from file_handler import (
+from gamesaver.file_handler import (
     is_safe_game_path,
     load_json,
     normalize_path,

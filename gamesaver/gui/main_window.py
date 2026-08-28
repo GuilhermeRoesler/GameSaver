@@ -2,9 +2,9 @@ from PyQt6.QtWidgets import (QMainWindow, QWidget, QVBoxLayout,
                             QHBoxLayout, QPushButton, QLabel)
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QFont
-from file_handler import create_default_files
-from game_manager import GameManager
-from settings import Settings
+from ..file_handler import create_default_files
+from ..game_manager import GameManager
+from ..settings import Settings
 from .settings_widget import SettingsWidget
 from .game_list_widget import GameListWidget
 

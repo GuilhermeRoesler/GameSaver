@@ -3,7 +3,7 @@ import shutil
 import json
 from typing import Any
 
-from constants import (
+from .constants import (
     BACKUP_PATH,
     DEFAULT_GAMES,
     DEFAULT_HOW_TO_RUN,
@@ -13,7 +13,7 @@ from constants import (
     SAVES_PATH,
     SETTINGS_PATH,
 )
-from path_policy import (
+from .path_policy import (
     is_safe_game_path,
     normalize_path,
     resolve_backup_destination,
@@ -37,7 +37,7 @@ __all__ = [
 ]
 
 # Backward compatibility for tests importing BLOCKED_EXACT_PATHS from file_handler.
-from path_policy import BLOCKED_EXACT_PATHS  # noqa: E402
+from .path_policy import BLOCKED_EXACT_PATHS  # noqa: E402
 
 
 def load_json(filepath: str) -> Any:

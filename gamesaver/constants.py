@@ -1,11 +1,24 @@
 import os
 import sys
-from utils import colored
+
+from .utils import colored
+
+PACKAGE_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(PACKAGE_DIR)
 
 # Paths
-BASE_DIR = os.path.dirname(sys.executable) if getattr(sys, 'frozen', False) else os.path.dirname(os.path.abspath(__file__))
-DATABASE_PATH = os.path.join(sys._MEIPASS, 'games_database.json') if hasattr(sys, '_MEIPASS') else 'games_database.json'
-STYLES_PATH = os.path.join(sys._MEIPASS, 'gui/styles.qss') if hasattr(sys, '_MEIPASS') else 'gui/styles.qss'
+BASE_DIR = os.path.dirname(sys.executable) if getattr(sys, 'frozen', False) else PROJECT_ROOT
+DATABASE_PATH = (
+    os.path.join(sys._MEIPASS, 'games_database.json')
+    if hasattr(sys, '_MEIPASS')
+    else os.path.join(PROJECT_ROOT, 'games_database.json')
+)
+STYLES_PATH = (
+    os.path.join(sys._MEIPASS, 'gamesaver', 'gui', 'styles.qss')
+    if hasattr(sys, '_MEIPASS')
+    else os.path.join(PACKAGE_DIR, 'gui', 'styles.qss')
+)
+ICON_PATH = os.path.join(PROJECT_ROOT, 'images', 'icon.png')
 
 GAMES_PATH = os.path.join(BASE_DIR, 'games.json')
 SETTINGS_PATH = os.path.join(BASE_DIR, 'settings.json')
@@ -24,13 +37,13 @@ QUIT_OPTIONS = ['q', 'quit', 'Q', 'Quit', '', ' ']
 DEFAULT_SETTINGS = {
     "user_location": USER_DEFAULT_PATH,
     "destination_location": DESTINATION_DEFAULT_PATH,
-    "mode": DEFAULT_MODE
+    "mode": DEFAULT_MODE,
 }
 DEFAULT_GAMES = [
     {
         "game": "Game Name",
         "path": "AppData/Roaming/YourGame",
-        "last_save": ""
+        "last_save": "",
     },
     {
         "game": "Game Name 2",
@@ -41,9 +54,12 @@ DEFAULT_GAMES = [
         "game": "Minecraft",
         "path": "AppData/Roaming/.minecraft/versions",
         "last_save": "",
-    }
+    },
 ]
-DEFAULT_HOW_TO_RUN = 'If you are lost and do not know how to proceed, please read the documentation available at https://github.com/GuilhermeRoesler/GameSaver 😉'
+DEFAULT_HOW_TO_RUN = (
+    'If you are lost and do not know how to proceed, please read the documentation '
+    'available at https://github.com/GuilhermeRoesler/GameSaver 😉'
+)
 
 # texts
 START_TEXT = colored('cyan', '''

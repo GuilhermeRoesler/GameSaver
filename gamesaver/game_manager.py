@@ -1,11 +1,11 @@
-from typing import Any
+from typing import Any, Sequence
 
-from backup_service import BackupService
-from constants import USER_DEFAULT_PATH, DESTINATION_DEFAULT_PATH
-from file_utils import format_size
-from models import GameEntry
-from repositories import GameRepository
-from utils import printc
+from .backup_service import BackupService
+from .constants import USER_DEFAULT_PATH, DESTINATION_DEFAULT_PATH
+from .file_utils import format_size
+from .models import GameEntry
+from .repositories import GameRepository
+from .utils import printc
 
 
 class GameManager:
@@ -59,7 +59,7 @@ class GameManager:
     def copy_installed_games(self) -> None:
         self.copy_selected_games(self.installed_games)
 
-    def copy_selected_games(self, games: list[GameEntry | dict[str, Any]]) -> None:
+    def copy_selected_games(self, games: Sequence[GameEntry | dict[str, Any]]) -> None:
         entries = [self._as_game_entry(game) for game in games]
         if not entries:
             printc('yellow', 'No games selected for backup.')
@@ -69,7 +69,7 @@ class GameManager:
         report = self._service.collect_games(entries)
         self._print_report(report)
 
-    def spread_selected_games(self, games: list[GameEntry | dict[str, Any]]) -> None:
+    def spread_selected_games(self, games: Sequence[GameEntry | dict[str, Any]]) -> None:
         entries = [self._as_game_entry(game) for game in games]
         if not entries:
             printc('yellow', 'No games selected for restore.')

@@ -1,9 +1,9 @@
 import os
 from typing import Any
 
-from constants import DATABASE_PATH, DEFAULT_SETTINGS, GAMES_PATH, SETTINGS_PATH
-from file_handler import load_json, save_json
-from models import AppSettings, GameEntry
+from .constants import DATABASE_PATH, DEFAULT_SETTINGS, GAMES_PATH, SETTINGS_PATH
+from .file_handler import load_json, save_json
+from .models import AppSettings, GameEntry
 
 
 def load_json_list(filepath: str) -> list[dict[str, Any]]:

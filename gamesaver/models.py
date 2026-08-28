@@ -36,9 +36,9 @@ class AppSettings:
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> "AppSettings":
         return cls(
-            user_location=data["user_location"],
-            destination_location=data["destination_location"],
-            mode=data.get("mode", "collect"),
+            user_location=str(data["user_location"]),
+            destination_location=str(data["destination_location"]),
+            mode=str(data.get("mode", "collect")),
         )
 
     def to_dict(self) -> dict[str, Any]:

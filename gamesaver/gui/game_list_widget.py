@@ -3,8 +3,8 @@ from PyQt6.QtWidgets import (QWidget, QVBoxLayout, QLineEdit, QGroupBox,
                             QSizePolicy, QMessageBox, QProgressDialog)
 from PyQt6.QtCore import Qt
 
-from game_manager import GameManager
-from models import BackupReport, GameEntry
+from ..game_manager import GameManager
+from ..models import BackupReport, GameEntry
 from .workers import OperationWorker
 
 

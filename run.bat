@@ -37,7 +37,7 @@ if errorlevel 1 (
 )
 
 echo Iniciando GameSaver...
-python main.py
+python -m gamesaver
 if errorlevel 1 pause
 
 endlocal

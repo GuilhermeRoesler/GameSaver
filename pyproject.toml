@@ -12,3 +12,19 @@ ignore = ["E501"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["."]
+
+[tool.mypy]
+python_version = "3.11"
+files = ["gamesaver", "tests"]
+ignore_missing_imports = true
+warn_return_any = true
+warn_unused_configs = true
+strict_optional = true
+
+[tool.coverage.run]
+source = ["gamesaver"]
+omit = ["gamesaver/gui/*"]
+
+[tool.coverage.report]
+fail_under = 60
+show_missing = true
