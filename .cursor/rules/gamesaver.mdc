@@ -1,0 +1,23 @@
+---
+description: Contexto essencial do GameSaver — aponta para a skill de especificações
+alwaysApply: true
+---
+
+# GameSaver
+
+App desktop Python/PyQt6 para backup e restore de saves de jogos locais (Windows, Linux, macOS).
+
+## Antes de modificar código
+
+Leia e siga a skill **gamesaver** em `.cursor/skills/gamesaver/SKILL.md`.
+
+Ela contém arquitetura, convenções, modelos de dados, segurança de paths, comandos e roadmap.
+
+## Regras rápidas
+
+- Separar lógica (`game_manager.py`, `file_handler.py`) de UI (`gui/`).
+- Novos paths de jogos devem passar por `is_safe_game_path()` e `validate_copy_paths()`.
+- Suportar modo frozen (PyInstaller) via `constants.py`.
+- Manter compatibilidade CLI + GUI (`isGUI` em `main.py`).
+- Dependências mínimas: PyQt6 e colorama apenas.
+- Código e comentários em inglês; validar com `ruff check .` e `pytest -v`.
