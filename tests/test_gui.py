@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 
 import pytest
+from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QApplication
 
 from gamesaver.backup_service import BackupService
@@ -104,9 +105,14 @@ def test_operation_worker_marks_remaining_as_cancelled(qapp, tmp_path, qtbot):
     worker.finished_report.connect(reports.append)
 
     def interrupt_after_first(*_args):
+        # DirectConnection: run in the worker thread so interruption is visible
+        # before the next game starts (QueuedConnection races on fast CI).
         worker.requestInterruption()
 
-    worker.progress.connect(interrupt_after_first)
+    worker.progress.connect(
+        interrupt_after_first,
+        Qt.ConnectionType.DirectConnection,
+    )
     worker.start()
     qtbot.waitUntil(lambda: len(reports) == 1, timeout=5000)
 

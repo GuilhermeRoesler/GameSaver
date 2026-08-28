@@ -1,7 +1,7 @@
 # 🎮 GameSaver - Manage Your Game Saves with Ease
 
 <p align="center">
-   <img src="images/dashboard.png" width="400">
+   <img src="images/demo1.png" width="400">
 </p>
 
 ## 📌 About the Project
@@ -26,7 +26,7 @@ With **GameSaver**, you can:
 - Add custom games via `games.json`.
 - Sync your backup folder through cloud storage (Google Drive, OneDrive, etc.) and restore on another machine once `spread` is available.
 
-![example](images/example1.png)
+![demo2](images/demo2.png)
 
 ## 🚀 How It Works
 

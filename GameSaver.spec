@@ -8,6 +8,7 @@ a = Analysis(
         ('games_database.json', '.'),
         ('gamesaver/gui/styles.qss', 'gamesaver/gui'),
         ('images/icon.png', 'images'),
+        ('images/icon.ico', 'images'),
     ],
     hiddenimports=[],
     hookspath=[],
@@ -38,4 +39,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
+    icon='images/icon.ico',
 )

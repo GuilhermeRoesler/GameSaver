@@ -1,16 +1,15 @@
 import argparse
 import logging
-import os
 import sys
 
-from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import QApplication
 
 from .cli_messages import FINAL_TEXT, START_TEXT
-from .constants import ICON_PATH, STYLES_PATH
+from .constants import STYLES_PATH
 from .file_handler import create_default_files
 from .game_manager import GameManager
 from .gui.main_window import GameSaverWindow
+from .gui.window_icon import apply_native_window_icon, load_app_icon, resolve_icon_path
 from .logging_config import configure_logging, get_logger
 from .settings import Settings
 
@@ -38,13 +37,36 @@ def load_stylesheet(file_path: str) -> str:
         return file.read()
 
 
+def configure_windows_app_id() -> None:
+    """Give Windows a distinct AppUserModelID so the taskbar shows our icon, not python.exe."""
+    if sys.platform != 'win32':
+        return
+    try:
+        import ctypes
+
+        ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID('GameSaver.Desktop.1')
+    except (AttributeError, OSError):
+        pass
+
+
 def run_gui() -> None:
+    configure_windows_app_id()
     app = QApplication(sys.argv)
-    if os.path.exists(ICON_PATH):
-        app.setWindowIcon(QIcon(ICON_PATH))
+    app.setApplicationName('GameSaver')
+    app.setApplicationDisplayName('GameSaver')
+    icon = load_app_icon()
+    if not icon.isNull():
+        app.setWindowIcon(icon)
     app.setStyleSheet(load_stylesheet(STYLES_PATH))
     window = GameSaverWindow()
+    if not icon.isNull():
+        window.setWindowIcon(icon)
     window.show()
+    # Ensure both Qt's QWindow and the native Win32 icons are set for the taskbar.
+    handle = window.windowHandle()
+    if handle is not None and not icon.isNull():
+        handle.setIcon(icon)
+    apply_native_window_icon(window, resolve_icon_path())
     sys.exit(app.exec())
 
 

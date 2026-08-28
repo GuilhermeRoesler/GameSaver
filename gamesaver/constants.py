@@ -16,11 +16,15 @@ STYLES_PATH = (
     if hasattr(sys, '_MEIPASS')
     else os.path.join(PACKAGE_DIR, 'gui', 'styles.qss')
 )
-ICON_PATH = (
-    os.path.join(sys._MEIPASS, 'images', 'icon.png')
+_IMAGES_DIR = (
+    os.path.join(sys._MEIPASS, 'images')
     if hasattr(sys, '_MEIPASS')
-    else os.path.join(PROJECT_ROOT, 'images', 'icon.png')
+    else os.path.join(PROJECT_ROOT, 'images')
 )
+ICON_PNG_PATH = os.path.join(_IMAGES_DIR, 'icon.png')
+ICON_ICO_PATH = os.path.join(_IMAGES_DIR, 'icon.ico')
+# Backwards-compatible alias; prefer ICO on Windows via gui.window_icon.resolve_icon_path().
+ICON_PATH = ICON_PNG_PATH
 
 GAMES_PATH = os.path.join(BASE_DIR, 'games.json')
 SETTINGS_PATH = os.path.join(BASE_DIR, 'settings.json')

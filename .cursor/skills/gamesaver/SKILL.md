@@ -46,12 +46,14 @@ gamesaver/
   utils.py                   # Helpers colorama
   gui/
     main_window.py
+    window_icon.py
     game_list_widget.py
     settings_widget.py       # user/destination/mode + persistência
     workers.py               # QThread para collect/spread (cancelável)
     styles.qss
 games_database.json
 images/icon.png
+images/icon.ico
 GameSaver.spec
 tests/
 ```
@@ -136,7 +138,8 @@ Nunca contornar essas validações.
 - `BASE_DIR` = diretório do `.exe` quando `sys.frozen`.
 - `DATABASE_PATH` e `STYLES_PATH` usam `sys._MEIPASS` quando empacotado.
 - `games.json` e `settings.json` ficam ao lado do executável.
-- Ícone em `images/icon.png` (também empacotável via datas no spec, se necessário).
+- Ícones: `images/icon.png` + `images/icon.ico` (ambos nos datas do spec). `EXE(icon=...)` usa o `.ico`.
+- No Windows: `configure_windows_app_id()` + `apply_native_window_icon()` (`WM_SETICON` via Win32) para a barra de tarefas; preferir `.ico` em `gui/window_icon.py`.
 
 Ao adicionar assets empacotados, atualizar `GameSaver.spec` e o workflow de release.
 
