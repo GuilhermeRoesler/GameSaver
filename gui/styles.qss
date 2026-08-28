@@ -1,0 +1,175 @@
+/* Main Window */
+QMainWindow {
+    background-color: #1E1E1E;
+}
+
+/* Header Text */
+QLabel#header {
+    color: #FFFFFF;
+    font-family: 'Segoe UI', Arial;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+QLabel {
+    color: #FFFFFF;
+}
+
+/* Group Boxes */
+QGroupBox {
+    background-color: #2D2D2D;
+    border: 2px solid #404040;
+    border-radius: 12px;
+    margin-top: 1.5em;
+    padding: 20px;
+    color: #FFFFFF;
+    font-weight: 500;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 12px;
+    padding: 0 8px;
+    color: #007AFF;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Input Fields */
+QLineEdit {
+    background-color: #383838;
+    border: 2px solid #404040;
+    border-radius: 6px;
+    padding: 8px 12px;
+    color: #FFFFFF;
+    font-size: 13px;
+    selection-background-color: #007AFF;
+}
+
+QLineEdit:focus {
+    border-color: #007AFF;
+}
+
+QLineEdit:hover {
+    background-color: #404040;
+}
+
+/* Table Styling */
+QTableWidget {
+    background-color: #2D2D2D;
+    alternate-background-color: #383838;
+    border: none;
+    border-radius: 8px;
+    gridline-color: #404040;
+    color: #FFFFFF;
+    selection-background-color: #007AFF;
+}
+
+QTableWidget::item {
+    padding: 8px;
+    border-radius: 4px;
+}
+
+QTableWidget::item:selected {
+    background-color: #007AFF;
+    color: white;
+}
+
+QTableWidget::item:hover:!selected {
+    background-color: #404040;
+}
+
+QHeaderView::section {
+    background-color: #2D2D2D;
+    color: #B0B0B0;
+    padding: 12px 8px;
+    border: none;
+    border-bottom: 2px solid #404040;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+/* Scrollbars */
+QScrollBar:vertical {
+    background: #2D2D2D;
+    width: 12px;
+    margin: 0;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:vertical {
+    background: #505050;
+    border-radius: 6px;
+    min-height: 30px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: #606060;
+}
+
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+QScrollBar:horizontal {
+    background: #2D2D2D;
+    height: 12px;
+    margin: 0;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:horizontal {
+    background: #505050;
+    border-radius: 6px;
+    min-width: 30px;
+}
+
+QScrollBar::handle:horizontal:hover {
+    background: #606060;
+}
+
+/* Action Buttons */
+QPushButton {
+    background-color: #007AFF;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    min-width: 100px;
+}
+
+QPushButton:hover {
+    background-color: #0051CB;
+}
+
+QPushButton:pressed {
+    background-color: #003B96;
+}
+
+/* Browse Buttons */
+QPushButton[objectName^="browse"] {
+    background-color: #383838;
+    min-width: 60px;
+    padding: 8px 12px;
+}
+
+QPushButton[objectName^="browse"]:hover {
+    background-color: #454545;
+}
+
+/* Search Box Special Styling */
+QLineEdit[placeholderText="Search games..."] {
+    background-color: #383838;
+    border: 2px solid #404040;
+    padding: 8px 12px;
+    margin: 4px 0 12px 0;
+    font-size: 13px;
+}
+
+QLineEdit[placeholderText="Search games..."]:focus {
+    border-color: #007AFF;
+}

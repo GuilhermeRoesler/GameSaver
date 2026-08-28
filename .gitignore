@@ -1,0 +1,16 @@
+/build/
+/dist/
+__pycache__/
+*.pyc
+*.pyo
+*.spec
+*.exe
+
+games.json
+settings.json
+how to run.txt
+SAVES/
+Backup/
+
+.env
+.env.*
