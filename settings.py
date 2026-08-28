@@ -9,7 +9,7 @@ class Settings:
         self.destination_location = DESTINATION_DEFAULT_PATH
         self.mode = 'collect'
         self.load()
-    
+
     def load(self) -> None:
         if os.path.exists(SETTINGS_PATH):
             settings = load_json(SETTINGS_PATH)
@@ -17,7 +17,7 @@ class Settings:
             self.destination_location = settings['destination_location']
             self.mode = settings['mode']
             self.check()
-    
+
     def check(self) -> None:
         while True:
             untouched = 0
@@ -41,7 +41,7 @@ class Settings:
                 untouched+=1
             if untouched == 0:
                 return
-    
+
     def _prompt_setting(self, setting: str, error_type: str) -> None:
         # Prompt user for a specific setting
         if error_type == 'blank':
@@ -49,22 +49,22 @@ class Settings:
             setattr(self, setting, input(f'{setting.upper()}: '))
         elif error_type == 'wrong':
             if setting == 'mode':
-                print(f'SELECT mode does not exist. Please choose either "collect" or "spread".')
+                print('SELECT mode does not exist. Please choose either "collect" or "spread".')
                 setattr(self, setting, input(f'{setting.upper()}: '))
             else:
                 print(f'{setting.upper()} path does not exist. Please, verify if that\'s right')
                 setattr(self, setting, input(f'{setting.upper()}: '))
-    
+
     # Ask for user if default is good
     def print(self) -> None:
         printc('cyan', '\nCurrent Settings:')
         print(f'{"─" * 40}')
-        
+
         colors = ['yellow', 'cyan']
         self.user_location = input(colored_multi(colors, ['User location ', f'[{self.user_location}]: '])).strip() or self.user_location
         self.destination_location = input(colored_multi(colors, ['Destination location ', f'[{self.destination_location}]: '])).strip() or self.destination_location
         self.mode = input(colored_multi(colors, ['Mode ', f'[{self.mode}]: '])).strip() or self.mode
-        
+
         print(f'{"─" * 40}')
         self.check()
 
@@ -75,13 +75,13 @@ class Settings:
 #         'destination_location': self.destination_location,
 #         'mode': self.mode
 #     }
-    
+
 #     errors = {
 #         'blank': lambda key: not required_settings[key],
 #         'wrong_path': lambda key: key in ['user_location', 'destination_location'] and not os.path.exists(required_settings[key]),
 #         'wrong_mode': lambda key: key == 'mode' and required_settings[key] not in ['collect', 'spread', '']
 #     }
-    
+
 #     for setting, value in required_settings.items():
 #         for error_type, condition in errors.items():
 #             if condition(setting):

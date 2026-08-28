@@ -12,26 +12,26 @@ class GameManager:
         self.extra_games = load_json(GAMES_PATH)
         self.all_games = self.database_games + self.extra_games
         self.installed_games = self.get_installed_games()
-    
+
     # Collect game saves from user location
     def collect(self) -> None:
         printc('green', '\nFound Games:')
         for game in self.installed_games:
             printc('cyan', f'➜  {game["game"]}')
         printc('yellow', f'\nTotal games found: {len(self.installed_games)}')
-        
+
         if not self.confirm_save_operation():
             return
-        
+
         self.copy_installed_games()
-    
+
     def spread(self) -> None:
         # Spread saved games to user computer
         print("We're still working on it... See you soon!")
-    
+
     def copy_installed_games(self) -> None:
         self.copy_selected_games(self.installed_games)
-    
+
     def copy_selected_games(self, games):
         if not games:
             printc('yellow', 'No games selected for backup.')
@@ -65,7 +65,7 @@ class GameManager:
                 continue
 
             printc('green', f'✓ Successfully backed up {game["game"]} into {game_destination}')
-    
+
     def get_installed_games(self) -> List[Dict]:
         game_list = self.all_games
         found_games = []
@@ -75,15 +75,15 @@ class GameManager:
                 found_games.append(game)
         self.installed_games = found_games
         return found_games
-    
+
     def get_save_destination(self, game: Dict) -> str:
         game_folder = os.path.basename(game['path'])
         return os.path.join(self.destination_location, 'SAVES', game_folder)
-    
+
     def confirm_save_operation(self) -> bool:
         response = input('Do you want to proceed? (y/n): ').lower().strip()
         return response in ['y', 'yes', '']
-    
+
     def update_locations(self, user_location, destination_location):
         self.user_location = user_location
         self.destination_location = destination_location

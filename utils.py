@@ -23,9 +23,9 @@ def colored(color: str, content: str) -> str:
 def colored_multi(colors: list, contents: list) -> str:
     if len(colors) != len(contents):
         raise ValueError('The color and content arrays must be the same size.')
-    
+
     result = ''
     for color, content in zip(colors, contents):
         result += colored(color, content)
-    
+
     return result
