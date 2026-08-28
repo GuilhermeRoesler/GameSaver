@@ -1,33 +1,54 @@
 import os
-from constants import SETTINGS_PATH, USER_DEFAULT_PATH, DESTINATION_DEFAULT_PATH
-from file_handler import load_json, save_json
+
+from constants import USER_DEFAULT_PATH, DESTINATION_DEFAULT_PATH
+from models import AppSettings
+from repositories import SettingsRepository
 from utils import printc, colored_multi
 
 
 class Settings:
     def __init__(self):
-        self.user_location = USER_DEFAULT_PATH
-        self.destination_location = DESTINATION_DEFAULT_PATH
-        self.mode = 'collect'
+        self._repository = SettingsRepository()
+        self._data = AppSettings(
+            user_location=USER_DEFAULT_PATH,
+            destination_location=DESTINATION_DEFAULT_PATH,
+            mode='collect',
+        )
         self.load()
 
+    @property
+    def user_location(self) -> str:
+        return self._data.user_location
+
+    @user_location.setter
+    def user_location(self, value: str) -> None:
+        self._data.user_location = value
+
+    @property
+    def destination_location(self) -> str:
+        return self._data.destination_location
+
+    @destination_location.setter
+    def destination_location(self, value: str) -> None:
+        self._data.destination_location = value
+
+    @property
+    def mode(self) -> str:
+        return self._data.mode
+
+    @mode.setter
+    def mode(self, value: str) -> None:
+        self._data.mode = value
+
     def load(self) -> None:
-        if os.path.exists(SETTINGS_PATH):
-            settings = load_json(SETTINGS_PATH)
-            self.user_location = settings['user_location']
-            self.destination_location = settings['destination_location']
-            self.mode = settings['mode']
-            self.check()
+        self._data = self._repository.load()
+        self.check()
 
     def save(self) -> None:
-        save_json(SETTINGS_PATH, self.to_dict())
+        self._repository.save(self._data)
 
     def to_dict(self) -> dict:
-        return {
-            'user_location': self.user_location,
-            'destination_location': self.destination_location,
-            'mode': self.mode,
-        }
+        return self._data.to_dict()
 
     def check(self) -> None:
         while True:

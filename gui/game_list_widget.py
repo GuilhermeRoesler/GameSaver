@@ -59,10 +59,10 @@ class GameListWidget(QWidget):
         self.games_table.setRowCount(len(games))
 
         for row, game in enumerate(games):
-            self.games_table.setItem(row, 0, QTableWidgetItem(game['game']))
-            self.games_table.setItem(row, 1, QTableWidgetItem(game['path']))
-            self.games_table.setItem(row, 2, QTableWidgetItem('0 Kb'))
-            self.games_table.setItem(row, 3, QTableWidgetItem(game['last_save']))
+            self.games_table.setItem(row, 0, QTableWidgetItem(game.name))
+            self.games_table.setItem(row, 1, QTableWidgetItem(game.path))
+            self.games_table.setItem(row, 2, QTableWidgetItem(GameManager.format_game_size(game)))
+            self.games_table.setItem(row, 3, QTableWidgetItem(game.last_save))
 
     def collect_saves(self):
         selected_games = self.get_selected_games()
