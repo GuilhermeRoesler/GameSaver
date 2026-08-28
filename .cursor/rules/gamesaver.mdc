@@ -15,9 +15,9 @@ Ela contém arquitetura, convenções, modelos de dados, segurança de paths, co
 
 ## Regras rápidas
 
-- Separar lógica (`game_manager.py`, `file_handler.py`) de UI (`gui/`).
-- Novos paths de jogos devem passar por `is_safe_game_path()` e `validate_copy_paths()`.
+- Separar lógica (`backup_service.py`, `path_policy.py`) de UI (`gamesaver/gui/`).
+- Novos paths de jogos devem passar por `is_safe_game_path()` e `validate_copy_paths()` / `validate_spread_paths()`.
 - Suportar modo frozen (PyInstaller) via `constants.py`.
-- Manter compatibilidade CLI + GUI (`isGUI` em `main.py`).
+- Manter compatibilidade CLI + GUI (`python -m gamesaver` / `--cli`).
 - Dependências mínimas: PyQt6 e colorama apenas.
-- Código e comentários em inglês; validar com `ruff check .` e `pytest -v`.
+- Código e comentários em inglês; validar com `ruff check .`, `mypy` e `pytest -v --cov=gamesaver`.

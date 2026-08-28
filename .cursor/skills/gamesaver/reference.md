@@ -5,73 +5,72 @@
 ## Fluxo collect (backup)
 
 1. Usuário define `user_location` (home) e `destination_location` (padrão `SAVES/`).
-2. `GameManager.get_installed_games()` verifica existência de `user_location + game.path`.
+2. `BackupService.get_installed_games()` verifica existência de `user_location + game.path`.
 3. Para cada jogo selecionado:
    - Valida path com `is_safe_game_path()`.
    - Monta destino: `destination_location / basename(game_location)`.
    - Valida com `validate_copy_paths()`.
    - Copia com `shutil.copytree(..., dirs_exist_ok=True)`.
+4. Retorna `BackupReport` com sucessos e falhas.
 
-## Fluxo spread (restore) — a implementar
+## Fluxo spread (restore)
 
 Espelho do collect:
 
-1. Ler jogos de `destination_location`.
-2. Para cada jogo, copiar de destino para `user_location + game.path`.
-3. Validar que destino de restore permanece dentro do home do usuário.
-4. Confirmar operação antes de sobrescrever saves existentes.
+1. Origem = pasta já coletada em `destination_location`.
+2. Destino = `user_location + game.path`.
+3. Valida com `validate_spread_paths()` (origem ⊆ backup, destino ⊆ home).
+4. Confirma operação antes de sobrescrever saves existentes (GUI e CLI).
 
 ## GUI — componentes
 
 | Widget | Arquivo | Função |
 |--------|---------|--------|
-| `GameSaverWindow` | `gui/main_window.py` | Janela principal, layout |
-| `SettingsWidget` | `gui/settings_widget.py` | Campos user/destination, browse |
-| `GameListWidget` | `gui/game_list_widget.py` | Tabela de jogos, busca, collect |
+| `GameSaverWindow` | `gamesaver/gui/main_window.py` | Janela principal, layout |
+| `SettingsWidget` | `gamesaver/gui/settings_widget.py` | Campos user/destination, browse, persistência |
+| `GameListWidget` | `gamesaver/gui/game_list_widget.py` | Tabela, busca, collect/spread |
+| `OperationWorker` | `gamesaver/gui/workers.py` | QThread para operações longas |
 
 Sinais:
 - `SettingsWidget.locations_changed` → recarrega lista de jogos instalados.
 
-Estilo: `gui/styles.qss` — fundo `#1E1E1E`, accent `#007AFF`, fonte Segoe UI/Arial, janela mínima 800×600.
+Estilo: `gamesaver/gui/styles.qss` — fundo `#1E1E1E`, accent `#007AFF`, fonte Segoe UI/Arial, janela mínima 800×600.
 
 ## CLI — fluxo
 
-1. `create_default_files()` cria JSONs padrão se inexistentes.
+1. `configure_logging()` + `create_default_files()` (`games.json`, `settings.json`, `SAVES/`).
 2. `Settings().load()` carrega/valida `settings.json`.
-3. `GameManager` executa `collect()` ou `spread()` conforme `mode`.
+3. `GameManager` (facade) executa `collect()` ou `spread()` conforme `mode`.
+4. Relatório colorido no terminal + logs estruturados.
 
-**Bug**: `GameManager(settings.user_location, settings.destination_location)` — construtor não aceita argumentos. Corrigir passando via atributos ou ajustando `__init__`.
+Entrada: `python -m gamesaver --cli` (opcional `-v` para debug).
 
 ## Testes
 
 ```
 tests/
-  test_file_handler.py  # is_safe_game_path, validate_copy_paths, JSON I/O
-  test_utils.py         # colored, printc
+  test_file_handler.py    # path policy reexportada, JSON I/O
+  test_backup_service.py  # collect/spread, repositories, metadata
+  test_adapters.py        # argparse, GameManager, Settings save
+  test_bootstrap.py       # create_default_files
+  test_utils.py           # colored helpers
 ```
 
 Padrões:
-- `@pytest.mark.parametrize` para casos de validação de path.
+- `@pytest.mark.parametrize` para validação de path.
 - `tmp_path` para I/O temporário.
-- Sem testes de GUI ou GameManager (gap a preencher).
-
-Config em `pyproject.toml`:
-```toml
-[tool.pytest.ini_options]
-testpaths = ["tests"]
-pythonpath = ["."]
-```
+- Cobertura mínima 60% no pacote `gamesaver` (GUI omitida).
 
 ## CI/CD
 
 ### ci.yml
 - Trigger: push/PR em `main`/`master`.
 - Python 3.11, 3.12, 3.13.
-- Steps: `ruff check .` → `pytest -v`.
+- Steps: `ruff check .` → `mypy` → `pytest -v --cov=gamesaver`.
 
 ### release.yml
 - Trigger: tags `v*`.
-- Build multi-OS com PyInstaller.
+- Build multi-OS com `GameSaver.spec` (PyInstaller).
 - Publica artefatos no GitHub Releases.
 
 ## Adicionar jogo — exemplos de paths válidos
@@ -95,8 +94,9 @@ Saved Games                # muito amplo (sem subpasta)
 ## Checklist de PR
 
 1. Escopo mínimo — não refatorar código não relacionado.
-2. Novos paths passam por validação de segurança.
-3. Testes para lógica nova em `file_handler` ou `game_manager`.
-4. `ruff check .` e `pytest -v` passam localmente.
-5. Se alterar assets empacotados, verificar workflow de release.
-6. Código e comentários em inglês.
+2. Novos paths passam por `path_policy` (segurança).
+3. Testes para lógica nova no domínio/infra.
+4. `ruff check .`, `mypy` e `pytest -v --cov=gamesaver` passam localmente.
+5. Se alterar assets empacotados, verificar `GameSaver.spec` / release workflow.
+6. Atualizar README/skill/reference se comportamento ou arquitetura mudar.
+7. Código e comentários em inglês.

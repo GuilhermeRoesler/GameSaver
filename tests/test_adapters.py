@@ -17,6 +17,11 @@ def test_build_parser_accepts_cli_flag():
     assert args.cli is True
 
 
+def test_build_parser_accepts_verbose_flag():
+    args = build_parser().parse_args(['--cli', '-v'])
+    assert args.verbose is True
+
+
 def test_game_manager_copy_selected_games(tmp_path, capsys):
     user_location = tmp_path / "user"
     backup_location = tmp_path / "backup"

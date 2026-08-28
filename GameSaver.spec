@@ -7,6 +7,7 @@ a = Analysis(
     datas=[
         ('games_database.json', '.'),
         ('gamesaver/gui/styles.qss', 'gamesaver/gui'),
+        ('images/icon.png', 'images'),
     ],
     hiddenimports=[],
     hookspath=[],

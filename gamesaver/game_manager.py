@@ -3,9 +3,12 @@ from typing import Any, Sequence
 from .backup_service import BackupService
 from .constants import USER_DEFAULT_PATH, DESTINATION_DEFAULT_PATH
 from .file_utils import format_size
-from .models import GameEntry
+from .logging_config import get_logger
+from .models import BackupReport, GameEntry
 from .repositories import GameRepository
 from .utils import printc
+
+logger = get_logger(__name__)
 
 
 class GameManager:
@@ -66,6 +69,7 @@ class GameManager:
             return
 
         printc('green', '\nStarting backup process...\n')
+        logger.info('Starting collect for %s game(s)', len(entries))
         report = self._service.collect_games(entries)
         self._print_report(report)
 
@@ -76,6 +80,7 @@ class GameManager:
             return
 
         printc('green', '\nStarting restore process...\n')
+        logger.info('Starting spread for %s game(s)', len(entries))
         report = self._service.spread_games(entries)
         self._print_report(report)
 
@@ -91,17 +96,18 @@ class GameManager:
         self._service.update_locations(user_location, destination_location)
         self.installed_games = self.get_installed_games()
 
-    def _print_report(self, report) -> None:
+    def _print_report(self, report: BackupReport) -> None:
         for result in report.results:
             if result.success:
                 printc('green', f'✓ {result.game_name}: {result.message}')
+                logger.info('%s: %s', result.game_name, result.message)
             else:
                 printc('red', f'⚠ {result.game_name}: {result.message}')
+                logger.warning('%s: %s', result.game_name, result.message)
 
-        printc(
-            'yellow',
-            f'\nCompleted: {len(report.successes)} succeeded, {len(report.failures)} failed.',
-        )
+        summary = f'Completed: {len(report.successes)} succeeded, {len(report.failures)} failed.'
+        printc('yellow', f'\n{summary}')
+        logger.info(summary)
 
     @staticmethod
     def _as_game_entry(game: GameEntry | dict[str, Any]) -> GameEntry:

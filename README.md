@@ -172,7 +172,7 @@ GameSaver/
 └── pyproject.toml           # ruff, mypy, pytest and coverage configuration
 ```
 
-Runtime files (created automatically, not versioned): `settings.json`, `games.json`, `SAVES/`, `Backup/`.
+Runtime files (created automatically, not versioned): `settings.json`, `games.json`, `SAVES/`.
 
 ## 🧪 Development
 

@@ -17,7 +17,7 @@ description: Especificações completas do GameSaver — app desktop Python/PyQt
 
 ## Visão geral
 
-GameSaver detecta jogos instalados, copia pastas de save para uma pasta central de backup (`collect`) e (futuro) restaura saves para os diretórios originais (`spread`).
+GameSaver detecta jogos instalados, copia pastas de save para uma pasta central de backup (`collect`) e restaura saves para os diretórios originais (`spread`).
 
 | Modo | Status | Descrição |
 |------|--------|-----------|
@@ -31,15 +31,17 @@ GameSaver detecta jogos instalados, copia pastas de save para uma pasta central 
 ```
 main.py                      # Entry point fino (delega para gamesaver)
 gamesaver/
-  __main__.py                # argparse (--cli), bootstrap GUI/CLI
-  constants.py               # Paths, defaults, PyInstaller
+  __main__.py                # argparse (--cli, -v), bootstrap GUI/CLI
+  constants.py               # Paths e defaults (PyInstaller)
+  cli_messages.py            # Textos ASCII do CLI
+  logging_config.py          # logging padrão
   models.py                  # GameEntry, AppSettings, BackupReport
   path_policy.py             # Validação e resolução de paths
   backup_service.py          # Lógica collect/spread (sem I/O de UI)
   repositories.py            # GameRepository, SettingsRepository
   file_handler.py            # JSON I/O, bootstrap de arquivos
   file_utils.py              # Tamanho, timestamps, formatação
-  game_manager.py            # Facade CLI (print/input)
+  game_manager.py            # Facade CLI (printc + logging)
   settings.py                # Facade de settings com prompts CLI
   utils.py                   # Helpers colorama
   gui/
@@ -48,39 +50,37 @@ gamesaver/
     settings_widget.py
     workers.py               # QThread para collect/spread
     styles.qss
-games_database.json          # Banco embarcado (75 jogos)
-GameSaver.spec               # Build PyInstaller
+games_database.json
+images/icon.png
+GameSaver.spec
 tests/
-  test_file_handler.py
-  test_backup_service.py
-  test_adapters.py
-  test_bootstrap.py
-  test_utils.py
 ```
 
-Arquivos gerados em runtime (gitignored): `games.json`, `settings.json`, `SAVES/`, `Backup/`.
+Arquivos gerados em runtime (gitignored): `games.json`, `settings.json`, `SAVES/`.
 
 ## Arquitetura
 
 ```
-gamesaver/__main__.py  → argparse + bootstrap (GUI ou CLI)
-gamesaver/constants.py → configuração global e paths (incl. PyInstaller frozen)
-gamesaver/settings.py  → facade Settings (load/validate/save)
-gamesaver/game_manager.py → facade CLI sobre BackupService
+gamesaver/__main__.py      → argparse + bootstrap (GUI ou CLI)
+gamesaver/constants.py     → paths e defaults (incl. PyInstaller frozen)
+gamesaver/cli_messages.py  → banners CLI
+gamesaver/logging_config.py → configure_logging / get_logger
+gamesaver/settings.py      → facade Settings (load/validate/save)
+gamesaver/game_manager.py  → facade CLI sobre BackupService
 gamesaver/backup_service.py → orquestração pura: collect/spread
-gamesaver/repositories.py → persistência JSON
-gamesaver/path_policy.py → segurança de paths
-gamesaver/file_handler.py → operações de I/O
-gamesaver/gui/*        → camada de apresentação PyQt6 + workers assíncronos
+gamesaver/repositories.py  → persistência JSON
+gamesaver/path_policy.py   → segurança de paths (pathlib)
+gamesaver/file_handler.py  → I/O e bootstrap (games/settings/SAVES)
+gamesaver/gui/*            → apresentação PyQt6 + workers assíncronos
 ```
 
 ### Responsabilidades
 
 - **BackupService**: collect/spread sem print/input; retorna `BackupReport`.
-- **GameManager**: adaptador CLI; imprime resultados e pede confirmação via terminal.
+- **GameManager**: adaptador CLI; feedback colorido + logging.
 - **GameRepository**: carrega `games_database.json` + `games.json`.
 - **SettingsRepository**: load/save de `settings.json`.
-- **GUI**: uma instância de `GameManager`; operações via `OperationWorker` (QThread).
+- **GUI**: uma instância de `GameManager`; operações via `OperationWorker` (QThread). Settings persistem em `settings.json`.
 
 ## Modelos de dados
 
@@ -96,7 +96,7 @@ gamesaver/gui/*        → camada de apresentação PyQt6 + workers assíncronos
 ```
 
 - `games_database.json`: banco embarcado (75 entradas). Não editar manualmente em produção.
-- `games.json`: jogos customizados do usuário. Mesclados em `GameManager.all_games`.
+- `games.json`: jogos customizados do usuário. Mesclados via `GameRepository`.
 
 Paths são **relativos ao home do usuário**, separados por `/`.
 
@@ -117,10 +117,10 @@ Modos válidos: `collect`, `spread`, `""` (vazio).
 Obrigatório para qualquer operação de cópia:
 
 1. `is_safe_game_path(path)` — bloqueia paths genéricos (`AppData`, `Documents`, etc.).
-2. `validate_copy_paths(source, dest, user_location, destination_location)` — garante que origem ⊆ user e destino ⊆ pasta de backup.
+2. `validate_copy_paths` / `validate_spread_paths` — usam `Path.resolve()` + `Path.relative_to()`.
 
 ```python
-# file_handler.py — paths bloqueados
+# path_policy.py — paths bloqueados
 BLOCKED_EXACT_PATHS = {
     "AppData", "Documents", "Saved Games",
     "Documents/My Games", "AppData/Roaming", "AppData/Local",
@@ -136,25 +136,27 @@ Nunca contornar essas validações.
 - `BASE_DIR` = diretório do `.exe` quando `sys.frozen`.
 - `DATABASE_PATH` e `STYLES_PATH` usam `sys._MEIPASS` quando empacotado.
 - `games.json` e `settings.json` ficam ao lado do executável.
+- Ícone em `images/icon.png` (também empacotável via datas no spec, se necessário).
 
-Ao adicionar assets empacotados, atualizar o workflow de release em `.github/workflows/release.yml`.
+Ao adicionar assets empacotados, atualizar `GameSaver.spec` e o workflow de release.
 
 ## Convenções de código
 
 | Aspecto | Padrão |
 |---------|--------|
-| Naming | snake_case (exceção: `isGUI`, `loadGUI`) |
+| Naming | snake_case |
 | Widgets GUI | método `init_ui()` para construção |
-| Type hints | parciais — adicionar onde fizer sentido |
+| Type hints | preferidos; mypy no CI |
 | Paths | normalizar com `/` via `normalize_path()` |
 | Idioma do código | inglês (comentários e strings de UI) |
 | Lint | ruff (`E`, `F`, `W`; line-length 120) |
-| Testes | pytest com `tmp_path` |
+| Types | mypy |
+| Testes | pytest + cobertura ≥ 60% no core |
 
 ### Dependências
 
 - **Produção**: PyQt6, colorama
-- **Dev**: pytest, ruff
+- **Dev**: pytest, pytest-cov, ruff, mypy
 - **Build**: pyinstaller
 
 Evitar adicionar novas dependências sem necessidade clara.
@@ -166,14 +168,15 @@ Evitar adicionar novas dependências sem necessidade clara.
 pip install -r requirements.txt -r requirements-dev.txt
 python -m gamesaver          # GUI
 python -m gamesaver --cli    # CLI
+python -m gamesaver --cli -v # CLI com debug logs
 
 # Qualidade
 ruff check .
 mypy
 pytest -v --cov=gamesaver
 
-# Build local (Windows)
-pip install pyinstaller
+# Build local
+pip install -r requirements-build.txt
 pyinstaller GameSaver.spec --noconfirm --clean
 ```
 
@@ -189,31 +192,30 @@ Scripts auxiliares: `run.bat` / `run.sh` (mensagens em português).
 
 ### Adicionar feature na GUI
 
-1. Implementar lógica em `game_manager.py` ou `file_handler.py`.
-2. Conectar widget em `gui/` via sinais PyQt.
-3. Manter tema em `gui/styles.qss` (escuro, accent `#007AFF`).
-4. Não persistir settings na GUI sem salvar em `settings.json` (gap conhecido).
+1. Implementar lógica em `backup_service.py` (domínio) — não nos widgets.
+2. Conectar widget em `gamesaver/gui/` via sinais PyQt / workers.
+3. Manter tema em `gamesaver/gui/styles.qss` (escuro, accent `#007AFF`).
+4. Persistência de settings via `Settings.save()` / `SettingsRepository`.
 
-### Implementar spread (restore)
+### Alterar collect/spread
 
-1. Inverter fluxo de `collect`: copiar de `destination_location` para `user_location + game.path`.
-2. Reutilizar `validate_copy_paths` com origem/destino invertidos.
-3. Implementar em `GameManager.spread()` e conectar botão na GUI.
-4. Adicionar testes em `tests/`.
+1. Mudar `BackupService` e `path_policy`.
+2. Cobrir com testes em `tests/test_backup_service.py`.
+3. Adaptadores CLI/GUI consomem `BackupReport` — evitar lógica duplicada.
 
 ## Problemas conhecidos
 
-| Issue | Detalhe |
-|-------|---------|
-| `images/icon.png` | Referenciado quando existente; ausente no repo |
+Nenhum bug estrutural aberto no momento. Gaps opcionais: testes de GUI, seletor de `mode` na interface gráfica.
 
 Consulte [reference.md](reference.md) para detalhes de CI/CD, testes e checklist de PR.
 
 ## Checklist antes de entregar
 
-- [ ] Lógica separada de UI
-- [ ] Paths validados com funções de segurança
+- [ ] Lógica no domínio (`BackupService`), UI só adapta
+- [ ] Paths validados com `path_policy`
 - [ ] Compatível com modo frozen (`constants.py`)
 - [ ] `ruff check .` passa
-- [ ] `pytest -v` passa
+- [ ] `mypy` passa
+- [ ] `pytest -v --cov=gamesaver` passa
+- [ ] Docs viva atualizadas se comportamento mudou
 - [ ] Sem dependências desnecessárias

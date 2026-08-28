@@ -1,15 +1,20 @@
 import argparse
+import logging
 import os
 import sys
 
 from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import QApplication
 
-from .constants import FINAL_TEXT, ICON_PATH, START_TEXT, STYLES_PATH
+from .cli_messages import FINAL_TEXT, START_TEXT
+from .constants import ICON_PATH, STYLES_PATH
 from .file_handler import create_default_files
 from .game_manager import GameManager
 from .gui.main_window import GameSaverWindow
+from .logging_config import configure_logging, get_logger
 from .settings import Settings
+
+logger = get_logger(__name__)
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -18,6 +23,12 @@ def build_parser() -> argparse.ArgumentParser:
         '--cli',
         action='store_true',
         help='Run in command-line mode instead of the graphical interface.',
+    )
+    parser.add_argument(
+        '--verbose',
+        '-v',
+        action='store_true',
+        help='Enable debug logging.',
     )
     return parser
 
@@ -50,6 +61,8 @@ def run_cli() -> None:
         game_manager.collect()
     elif settings.mode == 'spread':
         game_manager.spread()
+    else:
+        logger.error('Unknown mode: %s', settings.mode)
 
     print(FINAL_TEXT)
     input('Press Enter to exit...')
@@ -57,6 +70,7 @@ def run_cli() -> None:
 
 def main(argv: list[str] | None = None) -> None:
     args = build_parser().parse_args(argv)
+    configure_logging(logging.DEBUG if args.verbose else logging.INFO)
     if args.cli:
         run_cli()
     else:

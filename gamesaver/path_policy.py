@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 BLOCKED_EXACT_PATHS = {
     "AppData",
@@ -36,41 +37,42 @@ def resolve_spread_paths(user_location: str, destination_location: str, game_pat
 
 
 def validate_copy_paths(source: str, destination: str, user_location: str, destination_location: str) -> None:
-    source_real = os.path.realpath(source)
-    destination_real = os.path.realpath(destination)
-    user_real = os.path.realpath(user_location)
-    destination_base = os.path.realpath(destination_location)
+    source_real = Path(source).resolve()
+    destination_real = Path(destination).resolve()
+    user_real = Path(user_location).resolve()
+    destination_base = Path(destination_location).resolve()
 
-    if not os.path.isdir(source_real):
+    if not source_real.is_dir():
         raise ValueError(f"Source path does not exist or is not a directory: {source}")
 
     if not _is_relative_to(source_real, user_real):
         raise ValueError(f"Source path must stay within user location: {source}")
 
-    destination_parent = os.path.realpath(os.path.dirname(destination_real))
+    destination_parent = destination_real.parent.resolve()
     if not _is_relative_to(destination_parent, destination_base):
         raise ValueError(f"Destination must stay within backup folder: {destination}")
 
 
 def validate_spread_paths(source: str, destination: str, user_location: str, destination_location: str) -> None:
-    source_real = os.path.realpath(source)
-    destination_real = os.path.realpath(destination)
-    user_real = os.path.realpath(user_location)
-    destination_base = os.path.realpath(destination_location)
+    source_real = Path(source).resolve()
+    destination_real = Path(destination).resolve()
+    user_real = Path(user_location).resolve()
+    destination_base = Path(destination_location).resolve()
 
-    if not os.path.isdir(source_real):
+    if not source_real.is_dir():
         raise ValueError(f"Backup source does not exist or is not a directory: {source}")
 
     if not _is_relative_to(source_real, destination_base):
         raise ValueError(f"Backup source must stay within backup folder: {source}")
 
-    destination_parent = os.path.realpath(os.path.dirname(destination_real))
+    destination_parent = destination_real.parent.resolve()
     if not _is_relative_to(destination_parent, user_real):
         raise ValueError(f"Restore destination must stay within user location: {destination}")
 
 
-def _is_relative_to(path: str, base: str) -> bool:
+def _is_relative_to(path: Path, base: Path) -> bool:
     try:
-        return os.path.commonpath([path, base]) == base
+        path.relative_to(base)
+        return True
     except ValueError:
         return False

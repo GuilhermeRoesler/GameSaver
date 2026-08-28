@@ -1,8 +1,6 @@
 import os
 import sys
 
-from .utils import colored
-
 PACKAGE_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(PACKAGE_DIR)
 
@@ -18,13 +16,15 @@ STYLES_PATH = (
     if hasattr(sys, '_MEIPASS')
     else os.path.join(PACKAGE_DIR, 'gui', 'styles.qss')
 )
-ICON_PATH = os.path.join(PROJECT_ROOT, 'images', 'icon.png')
+ICON_PATH = (
+    os.path.join(sys._MEIPASS, 'images', 'icon.png')
+    if hasattr(sys, '_MEIPASS')
+    else os.path.join(PROJECT_ROOT, 'images', 'icon.png')
+)
 
 GAMES_PATH = os.path.join(BASE_DIR, 'games.json')
 SETTINGS_PATH = os.path.join(BASE_DIR, 'settings.json')
-HOW_TO_RUN_PATH = os.path.join(BASE_DIR, 'how to run.txt')
 SAVES_PATH = os.path.join(BASE_DIR, 'SAVES')
-BACKUP_PATH = os.path.join(BASE_DIR, 'Backup')
 
 USER_DEFAULT_PATH = os.path.expanduser('~').replace('\\', '/')
 DESTINATION_DEFAULT_PATH = SAVES_PATH.replace('\\', '/')
@@ -56,33 +56,3 @@ DEFAULT_GAMES = [
         "last_save": "",
     },
 ]
-DEFAULT_HOW_TO_RUN = (
-    'If you are lost and do not know how to proceed, please read the documentation '
-    'available at https://github.com/GuilhermeRoesler/GameSaver 😉'
-)
-
-# texts
-START_TEXT = colored('cyan', '''
-╔══════════════════ GAME SAVER ══════════════════╗
-║                                                ║
-║  Welcome to Game Saver!                        ║
-║                                                ║
-║  This tool helps you backup and restore        ║
-║  your game save files across computers.        ║
-║                                                ║
-║  Setup Steps:                                  ║
-║  1. Add user_location, destination_location    ║
-║  and mode in settings.json                     ║
-║  2. Configure games inside games.json          ║
-║  3. Read full documentation at                 ║
-║  https://github.com/GuilhermeRoesler/GameSaver ║
-║  4. Enjoy and have fun!                        ║
-║                                                ║
-╚════════════════════════════════════════════════╝
-''')
-
-FINAL_TEXT = colored('green', '''
-╔═════════════════════════════════════╗
-║  Operation completed successfully!  ║
-╚═════════════════════════════════════╝
-''')
