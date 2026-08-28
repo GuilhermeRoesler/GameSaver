@@ -29,6 +29,12 @@ def is_safe_game_path(path: str) -> bool:
     return True
 
 
+def resolve_backup_destination(user_location: str, destination_location: str, game_path: str) -> tuple[str, str]:
+    game_location = os.path.join(user_location, game_path)
+    game_destination = os.path.join(destination_location, os.path.basename(game_location))
+    return game_location, game_destination
+
+
 def validate_copy_paths(source: str, destination: str, user_location: str, destination_location: str) -> None:
     source_real = os.path.realpath(source)
     destination_real = os.path.realpath(destination)

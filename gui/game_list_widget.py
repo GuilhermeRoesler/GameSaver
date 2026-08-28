@@ -4,11 +4,11 @@ from PyQt6.QtWidgets import (QWidget, QVBoxLayout, QLineEdit, QGroupBox,
 from game_manager import GameManager
 
 class GameListWidget(QWidget):
-    def __init__(self, settings):
+    def __init__(self, settings, game_manager: GameManager):
         super().__init__()
 
         self.settings = settings
-        self.game_manager = GameManager()
+        self.game_manager = game_manager
 
         self.init_ui()
         self.update_games()
@@ -80,6 +80,13 @@ class GameListWidget(QWidget):
             return
 
         self.game_manager.copy_selected_games(selected_games)
+
+    def spread_saves(self):
+        QMessageBox.information(
+            self,
+            "Spread Saves",
+            "Spread mode is not available yet. It will be enabled in a future update.",
+        )
 
     def get_selected_games(self):
         selected_rows = {

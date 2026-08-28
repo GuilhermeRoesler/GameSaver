@@ -1,13 +1,23 @@
 import os
 from typing import List, Dict
-from file_handler import load_json, copy_game_save, is_safe_game_path, validate_copy_paths
+from file_handler import (
+    load_json,
+    copy_game_save,
+    is_safe_game_path,
+    validate_copy_paths,
+    resolve_backup_destination,
+)
 from constants import GAMES_PATH, DATABASE_PATH, USER_DEFAULT_PATH, DESTINATION_DEFAULT_PATH
 from utils import printc
 
 class GameManager:
-    def __init__(self):
-        self.user_location = USER_DEFAULT_PATH
-        self.destination_location = DESTINATION_DEFAULT_PATH
+    def __init__(
+        self,
+        user_location: str | None = None,
+        destination_location: str | None = None,
+    ):
+        self.user_location = user_location or USER_DEFAULT_PATH
+        self.destination_location = destination_location or DESTINATION_DEFAULT_PATH
         self.database_games = load_json(DATABASE_PATH)
         self.extra_games = load_json(GAMES_PATH)
         self.all_games = self.database_games + self.extra_games
@@ -49,8 +59,11 @@ class GameManager:
                 printc('red', f'⚠ Skipping {game["game"]} - Path is too broad or unsafe')
                 continue
 
-            game_location = os.path.join(self.user_location, game['path'])
-            game_destination = os.path.join(self.destination_location, os.path.basename(game_location))
+            game_location, game_destination = resolve_backup_destination(
+                self.user_location,
+                self.destination_location,
+                game['path'],
+            )
 
             try:
                 validate_copy_paths(
@@ -75,10 +88,6 @@ class GameManager:
                 found_games.append(game)
         self.installed_games = found_games
         return found_games
-
-    def get_save_destination(self, game: Dict) -> str:
-        game_folder = os.path.basename(game['path'])
-        return os.path.join(self.destination_location, 'SAVES', game_folder)
 
     def confirm_save_operation(self) -> bool:
         response = input('Do you want to proceed? (y/n): ').lower().strip()

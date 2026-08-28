@@ -2,6 +2,7 @@ from PyQt6.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QLineEdit,
                             QPushButton, QLabel, QGroupBox, QFileDialog)
 from PyQt6.QtCore import pyqtSignal
 
+
 class SettingsWidget(QWidget):
     locations_changed = pyqtSignal()
 
@@ -13,25 +14,23 @@ class SettingsWidget(QWidget):
         self.init_ui()
 
     def init_ui(self):
-        # Create main layout for the widget
         main_layout = QVBoxLayout()
 
-        # Create and setup the group
         group = QGroupBox("Settings")
         layout = QVBoxLayout()
 
-        # User location
         user_layout = QHBoxLayout()
         self.user_location = QLineEdit(self.settings.user_location)
+        self.user_location.editingFinished.connect(self._apply_settings)
         browse_user = QPushButton("Browse")
         browse_user.clicked.connect(lambda: self.browse_folder(self.user_location))
         user_layout.addWidget(QLabel("User Location:"))
         user_layout.addWidget(self.user_location)
         user_layout.addWidget(browse_user)
 
-        # Destination location
         dest_layout = QHBoxLayout()
         self.dest_location = QLineEdit(self.settings.destination_location)
+        self.dest_location.editingFinished.connect(self._apply_settings)
         browse_dest = QPushButton("Browse")
         browse_dest.clicked.connect(lambda: self.browse_folder(self.dest_location))
         dest_layout.addWidget(QLabel("Destination:"))
@@ -50,6 +49,10 @@ class SettingsWidget(QWidget):
         folder = QFileDialog.getExistingDirectory(self, "Select Directory")
         if folder:
             line_edit.setText(folder)
-            self.settings.user_location = self.user_location.text()
-            self.settings.destination_location = self.dest_location.text()
-            self.locations_changed.emit()
+            self._apply_settings()
+
+    def _apply_settings(self) -> None:
+        self.settings.user_location = self.user_location.text().strip()
+        self.settings.destination_location = self.dest_location.text().strip()
+        self.settings.save()
+        self.locations_changed.emit()

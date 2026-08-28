@@ -1,7 +1,8 @@
 import os
 from constants import SETTINGS_PATH, USER_DEFAULT_PATH, DESTINATION_DEFAULT_PATH
-from file_handler import load_json
+from file_handler import load_json, save_json
 from utils import printc, colored_multi
+
 
 class Settings:
     def __init__(self):
@@ -18,32 +19,41 @@ class Settings:
             self.mode = settings['mode']
             self.check()
 
+    def save(self) -> None:
+        save_json(SETTINGS_PATH, self.to_dict())
+
+    def to_dict(self) -> dict:
+        return {
+            'user_location': self.user_location,
+            'destination_location': self.destination_location,
+            'mode': self.mode,
+        }
+
     def check(self) -> None:
         while True:
             untouched = 0
             if not self.user_location:
                 self._prompt_setting(setting='user_location', error_type='blank')
-                untouched+=1
+                untouched += 1
             if not self.destination_location:
                 self._prompt_setting(setting='destination_location', error_type='blank')
-                untouched+=1
+                untouched += 1
             if not self.mode:
                 self._prompt_setting(setting='mode', error_type='blank')
-                untouched+=1
+                untouched += 1
             if not os.path.exists(self.user_location):
                 self._prompt_setting(setting='user_location', error_type='wrong')
-                untouched+=1
+                untouched += 1
             if not os.path.exists(self.destination_location):
                 self._prompt_setting(setting='destination_location', error_type='wrong')
-                untouched+=1
+                untouched += 1
             if self.mode not in ['collect', 'spread', '']:
                 self._prompt_setting(setting='mode', error_type='wrong')
-                untouched+=1
+                untouched += 1
             if untouched == 0:
                 return
 
     def _prompt_setting(self, setting: str, error_type: str) -> None:
-        # Prompt user for a specific setting
         if error_type == 'blank':
             print(f'{setting.upper()} is blank, please, fill it up:')
             setattr(self, setting, input(f'{setting.upper()}: '))
@@ -55,7 +65,6 @@ class Settings:
                 print(f'{setting.upper()} path does not exist. Please, verify if that\'s right')
                 setattr(self, setting, input(f'{setting.upper()}: '))
 
-    # Ask for user if default is good
     def print(self) -> None:
         printc('cyan', '\nCurrent Settings:')
         print(f'{"─" * 40}')
@@ -67,23 +76,4 @@ class Settings:
 
         print(f'{"─" * 40}')
         self.check()
-
-
-# def check(self) -> None:
-#     required_settings = {
-#         'user_location': self.user_location,
-#         'destination_location': self.destination_location,
-#         'mode': self.mode
-#     }
-
-#     errors = {
-#         'blank': lambda key: not required_settings[key],
-#         'wrong_path': lambda key: key in ['user_location', 'destination_location'] and not os.path.exists(required_settings[key]),
-#         'wrong_mode': lambda key: key == 'mode' and required_settings[key] not in ['collect', 'spread', '']
-#     }
-
-#     for setting, value in required_settings.items():
-#         for error_type, condition in errors.items():
-#             if condition(setting):
-#                 self._prompt_setting(setting=setting, error_type=error_type)
-#                 break
+        self.save()

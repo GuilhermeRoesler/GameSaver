@@ -8,17 +8,6 @@ from settings import Settings
 from .settings_widget import SettingsWidget
 from .game_list_widget import GameListWidget
 
-# Obtém a resolução da tela atual
-        # screen = QApplication.primaryScreen()
-        # screen_geometry = screen.availableGeometry()
-
-        # # Verifica se a resolução da tela suporta 800x800
-        # if screen_geometry.width() >= 800 and screen_geometry.height() >= 800:
-        #     self.setMinimumSize(800, 800)
-        #     self.resize(800, 800)
-        # else:
-        #     self.setMinimumSize(800, 600)
-        #     self.resize(800, 600)
 
 class GameSaverWindow(QMainWindow):
     def __init__(self):
@@ -26,39 +15,36 @@ class GameSaverWindow(QMainWindow):
         self.setWindowTitle("GameSaver")
         self.setMinimumSize(800, 600)
         self.resize(800, 800)
-        # self.showMaximized()
 
         create_default_files()
 
-        self.game_manager = GameManager()
         self.settings = Settings()
+        self.game_manager = GameManager(
+            self.settings.user_location,
+            self.settings.destination_location,
+        )
 
         self.init_ui()
 
     def init_ui(self):
-        # Main widget and layout
         main_widget = QWidget()
         self.setCentralWidget(main_widget)
         layout = QVBoxLayout(main_widget)
 
-        # Header
         header = QLabel("GameSaver")
         header.setObjectName("header")
         header.setFont(QFont("Arial", 24, QFont.Weight.Bold))
         header.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(header)
 
-        # Settings section
         self.settings_widget = SettingsWidget(self.settings)
         layout.addWidget(self.settings_widget)
 
-        # Games list
-        self.games_widget = GameListWidget(self.settings)
+        self.games_widget = GameListWidget(self.settings, self.game_manager)
         layout.addWidget(self.games_widget)
 
-        self.settings_widget.locations_changed.connect(self.update_games_list)  # Remove the parentheses
+        self.settings_widget.locations_changed.connect(self.update_games_list)
 
-        # Action buttons
         buttons_layout = QHBoxLayout()
         collect_btn = QPushButton("Collect Saves")
         collect_btn.clicked.connect(self.games_widget.collect_saves)
@@ -70,7 +56,11 @@ class GameSaverWindow(QMainWindow):
         layout.addLayout(buttons_layout)
 
     def update_games_list(self):
+        self.game_manager.update_locations(
+            self.settings.user_location,
+            self.settings.destination_location,
+        )
         self.games_widget.update_games()
 
     def spread_saves(self):
-        ...
+        self.games_widget.spread_saves()

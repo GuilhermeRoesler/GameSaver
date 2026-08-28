@@ -1,3 +1,4 @@
+import os
 import sys
 from PyQt6.QtWidgets import QApplication
 from PyQt6.QtGui import QIcon
@@ -5,7 +6,7 @@ from gui.main_window import GameSaverWindow
 from settings import Settings
 from game_manager import GameManager
 from file_handler import create_default_files
-from constants import START_TEXT, FINAL_TEXT, STYLES_PATH
+from constants import START_TEXT, FINAL_TEXT, STYLES_PATH, BASE_DIR
 
 isGUI = True
 
@@ -14,8 +15,10 @@ def run() -> None:
 
 def loadGUI():
     app = QApplication(sys.argv)
-    app.setWindowIcon(QIcon('images/icon.png'))
-    app.setStyleSheet(load_stylesheet('gui/styles.qss'))
+    icon_path = os.path.join(BASE_DIR, 'images', 'icon.png')
+    if os.path.exists(icon_path):
+        app.setWindowIcon(QIcon(icon_path))
+    app.setStyleSheet(load_stylesheet(STYLES_PATH))
     window = GameSaverWindow()
     window.show()
     sys.exit(app.exec())
